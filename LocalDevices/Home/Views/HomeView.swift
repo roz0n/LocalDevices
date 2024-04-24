@@ -16,8 +16,8 @@ struct HomeView: View {
     List {
       if !listViewModel.devices.isEmpty {
         Section("Discovered Devices") {
-          ForEach(listViewModel.devices, id: \.self) { string in
-            Text(string)
+          ForEach(listViewModel.devices) { deviceViewModel in
+            LocalDeviceCellView(viewModel: deviceViewModel)
           }
         }
       }

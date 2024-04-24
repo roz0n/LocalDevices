@@ -10,12 +10,12 @@ import Combine
 
 class NetworkDeviceListViewModel: ObservableObject {
   
-  @Published var devices: [String]
+  @Published var devices: [LocalNetworkDeviceViewModel]
   
   private var service: NetworkDeviceService?
   private var cancellables: Set<AnyCancellable> = []
   
-  init(devices: [String] = []) {
+  init(devices: [LocalNetworkDeviceViewModel] = []) {
     self.devices = devices
     self.service = NetworkDeviceService(
       host: .ipv4(.broadcast),
@@ -29,8 +29,8 @@ class NetworkDeviceListViewModel: ObservableObject {
   private func subscribeToDevices() {
     service?.deviceDiscoveryPublisher
       .receive(on: DispatchQueue.main)
-      .sink(receiveValue: { [weak self] string in
-        self?.devices.append(string)
+      .sink(receiveValue: { [weak self] device in
+        self?.devices.append(.init(device: device))
       })
       .store(in: &cancellables)
   }

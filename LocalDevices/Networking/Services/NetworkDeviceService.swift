@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 import Network
+import XMLCoder
 
 /// A service that both initializes and runs a connection and listener for a given host, port, and provider conforming to ``NetworkConnectionBuilder``.
 class NetworkDeviceService: NetworkConnectable {
@@ -15,7 +16,7 @@ class NetworkDeviceService: NetworkConnectable {
   private (set) var connection: NWConnection?
   private (set) var listener: NWListener?
   private (set) var queue: DispatchQueue
-  private (set) var deviceDiscoveryPublisher = PassthroughSubject<String, Never>()
+  private (set) var deviceDiscoveryPublisher = PassthroughSubject<LocalNetworkDevice, Never>()
   
   // MARK: - Lifecycle
   
@@ -78,13 +79,27 @@ class NetworkDeviceService: NetworkConnectable {
       if isComplete, let content, let message = String(data: content, encoding: .utf8) {
         print("New connection content: \(message)")
         
-        self?.deviceDiscoveryPublisher.send(message)
+        if let decodedData = try? XMLDecoder().decode(LocalNetworkDevice.self, from: content) {
+          self?.deviceDiscoveryPublisher.send(decodedData)
+        }
       } else {
         print("New connection did not provide new message...")
       }
     }
     
     connection.start(queue: queue)
+  }
+  
+  // MARK: - Transmission
+  
+  func sendNonceRequest() {
+    guard let connection else {
+      return
+    }
+    
+    connection.send(content: Data(), completion: .contentProcessed({ sendError in
+      print("Error sending request: \(sendError as Any)")
+    }))
   }
   
 }
