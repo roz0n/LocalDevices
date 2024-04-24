@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 import Network
 
 /// A service that both initializes and runs a connection and listener for a given host, port, and provider conforming to ``NetworkConnectionBuilder``.
@@ -14,6 +15,7 @@ class NetworkDeviceService: NetworkConnectable {
   private (set) var connection: NWConnection?
   private (set) var listener: NWListener?
   private (set) var queue: DispatchQueue
+  private (set) var devices = PassthroughSubject<String, Never>()
   
   // MARK: - Lifecycle
   
@@ -67,14 +69,15 @@ class NetworkDeviceService: NetworkConnectable {
   }
   
   func handleNewConnection(_ connection: NWConnection, on queue: DispatchQueue) {
-    connection.receiveMessage { content, contentContext, isComplete, error in
+    connection.receiveMessage { [weak self] content, contentContext, isComplete, error in
       guard error == nil else {
         print("Error handling new connection: \(error as Any)")
         return
       }
       
-      if let content, let message = String(data: content, encoding: .utf8) {
+      if isComplete, let content, let message = String(data: content, encoding: .utf8) {
         print("New connection content: \(message)")
+        self?.devices.send(message)
       } else {
         print("New connection did not provide new message...")
       }

@@ -8,21 +8,11 @@
 import SwiftUI
 
 struct ContentView: View {
-  
-  private var networkDeviceService = NetworkDeviceService(
-    host: .ipv4(.broadcast),
-    port: 10004,
-    provider: NetworkConnectionProvider(protocol: .udp)
-  )
-  
+    
   var body: some View {
-    VStack {
-      Image(systemName: "globe")
-        .imageScale(.large)
-        .foregroundStyle(.tint)
-      Text("Hello, world!")
+    NavigationStack {
+      HomeView()
     }
-    .padding()
   }
 }
 
