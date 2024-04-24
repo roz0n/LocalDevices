@@ -14,6 +14,11 @@
 		A752C53B2BD8B05A00609560 /* LocalDevicesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752C53A2BD8B05A00609560 /* LocalDevicesTests.swift */; };
 		A752C5452BD8B05A00609560 /* LocalDevicesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752C5442BD8B05A00609560 /* LocalDevicesUITests.swift */; };
 		A752C5472BD8B05A00609560 /* LocalDevicesUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752C5462BD8B05A00609560 /* LocalDevicesUITestsLaunchTests.swift */; };
+		A752C5562BD8B09000609560 /* NetworkDeviceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752C5552BD8B09000609560 /* NetworkDeviceService.swift */; };
+		A752C5592BD8B9EA00609560 /* NetworkConnectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752C5582BD8B9EA00609560 /* NetworkConnectable.swift */; };
+		A752C55B2BD8BA0800609560 /* NetworkConnectionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752C55A2BD8BA0800609560 /* NetworkConnectionBuilder.swift */; };
+		A752C55E2BD8BB5000609560 /* NetworkConnectionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752C55D2BD8BB5000609560 /* NetworkConnectionProvider.swift */; };
+		A752C5662BD8BDB000609560 /* NetworkConnectionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752C5652BD8BDB000609560 /* NetworkConnectionError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +49,11 @@
 		A752C5402BD8B05A00609560 /* LocalDevicesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocalDevicesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A752C5442BD8B05A00609560 /* LocalDevicesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDevicesUITests.swift; sourceTree = "<group>"; };
 		A752C5462BD8B05A00609560 /* LocalDevicesUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDevicesUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		A752C5552BD8B09000609560 /* NetworkDeviceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDeviceService.swift; sourceTree = "<group>"; };
+		A752C5582BD8B9EA00609560 /* NetworkConnectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConnectable.swift; sourceTree = "<group>"; };
+		A752C55A2BD8BA0800609560 /* NetworkConnectionBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConnectionBuilder.swift; sourceTree = "<group>"; };
+		A752C55D2BD8BB5000609560 /* NetworkConnectionProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConnectionProvider.swift; sourceTree = "<group>"; };
+		A752C5652BD8BDB000609560 /* NetworkConnectionError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConnectionError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,10 +104,10 @@
 		A752C5282BD8B04E00609560 /* LocalDevices */ = {
 			isa = PBXGroup;
 			children = (
-				A752C5292BD8B04E00609560 /* LocalDevicesApp.swift */,
-				A752C52B2BD8B04E00609560 /* ContentView.swift */,
-				A752C52D2BD8B05A00609560 /* Assets.xcassets */,
+				A752C5532BD8B06500609560 /* Networking */,
+				A752C55F2BD8BB6400609560 /* Common */,
 				A752C52F2BD8B05A00609560 /* Preview Content */,
+				A752C52D2BD8B05A00609560 /* Assets.xcassets */,
 			);
 			path = LocalDevices;
 			sourceTree = "<group>";
@@ -125,6 +135,67 @@
 				A752C5462BD8B05A00609560 /* LocalDevicesUITestsLaunchTests.swift */,
 			);
 			path = LocalDevicesUITests;
+			sourceTree = "<group>";
+		};
+		A752C5532BD8B06500609560 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				A752C5642BD8BD9200609560 /* Enums */,
+				A752C5572BD8B9E100609560 /* Protocols */,
+				A752C55C2BD8BACE00609560 /* Utilities */,
+				A752C5542BD8B07C00609560 /* Services */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		A752C5542BD8B07C00609560 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A752C5552BD8B09000609560 /* NetworkDeviceService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		A752C5572BD8B9E100609560 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				A752C55A2BD8BA0800609560 /* NetworkConnectionBuilder.swift */,
+				A752C5582BD8B9EA00609560 /* NetworkConnectable.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		A752C55C2BD8BACE00609560 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				A752C5602BD8BC4F00609560 /* Providers */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		A752C55F2BD8BB6400609560 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				A752C5292BD8B04E00609560 /* LocalDevicesApp.swift */,
+				A752C52B2BD8B04E00609560 /* ContentView.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		A752C5602BD8BC4F00609560 /* Providers */ = {
+			isa = PBXGroup;
+			children = (
+				A752C55D2BD8BB5000609560 /* NetworkConnectionProvider.swift */,
+			);
+			path = Providers;
+			sourceTree = "<group>";
+		};
+		A752C5642BD8BD9200609560 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				A752C5652BD8BDB000609560 /* NetworkConnectionError.swift */,
+			);
+			path = Enums;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,8 +328,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A752C5562BD8B09000609560 /* NetworkDeviceService.swift in Sources */,
+				A752C5592BD8B9EA00609560 /* NetworkConnectable.swift in Sources */,
+				A752C55E2BD8BB5000609560 /* NetworkConnectionProvider.swift in Sources */,
 				A752C52C2BD8B04E00609560 /* ContentView.swift in Sources */,
 				A752C52A2BD8B04E00609560 /* LocalDevicesApp.swift in Sources */,
+				A752C5662BD8BDB000609560 /* NetworkConnectionError.swift in Sources */,
+				A752C55B2BD8BA0800609560 /* NetworkConnectionBuilder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
