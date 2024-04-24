@@ -1,5 +1,5 @@
 //
-//  HomeListViewModel.swift
+//  NetworkDeviceListViewModel.swift
 //  LocalDevices
 //
 //  Created by Arnaldo Rozon on 4/24/24.
@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-class HomeListViewModel: ObservableObject {
+class NetworkDeviceListViewModel: ObservableObject {
   
   @Published var devices: [String]
   
@@ -27,7 +27,7 @@ class HomeListViewModel: ObservableObject {
   }
   
   private func subscribeToDevices() {
-    self.service?.devices
+    service?.deviceDiscoveryPublisher
       .receive(on: DispatchQueue.main)
       .sink(receiveValue: { [weak self] string in
         self?.devices.append(string)

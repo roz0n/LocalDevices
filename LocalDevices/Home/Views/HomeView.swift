@@ -6,10 +6,11 @@
 //
 
 import SwiftUI
+import Combine
 
 struct HomeView: View {
   
-  @StateObject private var listViewModel = HomeListViewModel()
+  @StateObject private var listViewModel = NetworkDeviceListViewModel()
   
   var body: some View {
     List {

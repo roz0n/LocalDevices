@@ -15,7 +15,7 @@ class NetworkDeviceService: NetworkConnectable {
   private (set) var connection: NWConnection?
   private (set) var listener: NWListener?
   private (set) var queue: DispatchQueue
-  private (set) var devices = PassthroughSubject<String, Never>()
+  private (set) var deviceDiscoveryPublisher = PassthroughSubject<String, Never>()
   
   // MARK: - Lifecycle
   
@@ -77,7 +77,8 @@ class NetworkDeviceService: NetworkConnectable {
       
       if isComplete, let content, let message = String(data: content, encoding: .utf8) {
         print("New connection content: \(message)")
-        self?.devices.send(message)
+        
+        self?.deviceDiscoveryPublisher.send(message)
       } else {
         print("New connection did not provide new message...")
       }
