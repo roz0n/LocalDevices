@@ -14,14 +14,23 @@ struct HomeView: View {
   
   var body: some View {
     List {
-      Section("Discovered Devices") {
-        ForEach(listViewModel.devices, id: \.self) { string in
-          Text(string)
+      if !listViewModel.devices.isEmpty {
+        Section("Discovered Devices") {
+          ForEach(listViewModel.devices, id: \.self) { string in
+            Text(string)
+          }
         }
       }
     }
     .navigationTitle("LocalDevices")
     .navigationBarTitleDisplayMode(.inline)
+    .overlay {
+      if listViewModel.devices.isEmpty {
+        ContentUnavailableView("Searching for Devices",
+                               systemImage: "network",
+                               description: Text("Devices in your local network will appear here as they are discovered."))
+      }
+    }
   }
 }
 
