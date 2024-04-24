@@ -6,8 +6,28 @@
 	<dict>
 		<key>LocalDevices.xcscheme_^#shared#^_</key>
 		<dict>
+			<key>isShown</key>
+			<true/>
 			<key>orderHint</key>
 			<integer>0</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>A752C5252BD8B04E00609560</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A752C5352BD8B05A00609560</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A752C53F2BD8B05A00609560</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

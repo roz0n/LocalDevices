@@ -8,6 +8,13 @@
 import SwiftUI
 
 struct ContentView: View {
+  
+  private var networkDeviceService = NetworkDeviceService(
+    host: .ipv4(.broadcast),
+    port: 10004,
+    provider: NetworkConnectionProvider(protocol: .udp)
+  )
+  
   var body: some View {
     VStack {
       Image(systemName: "globe")
@@ -16,12 +23,6 @@ struct ContentView: View {
       Text("Hello, world!")
     }
     .padding()
-    .onAppear {
-      let provider = NetworkConnectionProvider(protocol: .udp)
-      _ = NetworkDeviceService(host: .ipv4(.broadcast),
-                                         port: 10004,
-                                         provider: provider)
-    }
   }
 }
 

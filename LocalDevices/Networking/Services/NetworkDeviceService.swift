@@ -13,18 +13,23 @@ class NetworkDeviceService: NetworkConnectable {
   
   private (set) var connection: NWConnection?
   private (set) var listener: NWListener?
-  private (set) var queue = DispatchQueue(label: "com.guitarcenter.expressmobile.networkdeviceservice")
+  private (set) var queue: DispatchQueue?
   
   // MARK: - Lifecycle
 
   /// A failable initializer that
-  init?(host: NWEndpoint.Host, port: NWEndpoint.Port, provider: NetworkConnectionBuilder) {
+  init?(host: NWEndpoint.Host,
+        port: NWEndpoint.Port,
+        queue: DispatchQueue = .global(),
+        provider: NetworkConnectionBuilder) {
     do {
       self.connection = provider.createConnection(host: host, port: port)
-      self.listener = try provider.createListener(port: port)
+      self.listener = try provider.createListener(port: port, on: queue)
       
       try startConnection()
       try startListener()
+      
+      print("NetworkDeviceService init success!")
     } catch {
       print("Error initializing NetworkDeviceService: \(error.localizedDescription)\n\(error)")
       return nil
@@ -43,7 +48,7 @@ class NetworkDeviceService: NetworkConnectable {
       throw NetworkConnectionError.connectionFailure
     }
     
-    connection.start(queue: queue)
+    connection.start(queue: .main)
   }
   
   func startListener() throws {
@@ -51,7 +56,7 @@ class NetworkDeviceService: NetworkConnectable {
       throw NetworkConnectionError.listenerFailure
     }
     
-    listener.start(queue: queue)
+    listener.start(queue: .main)
   }
   
 }

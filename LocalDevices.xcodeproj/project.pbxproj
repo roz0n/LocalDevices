@@ -105,7 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				A752C5532BD8B06500609560 /* Networking */,
-				A752C55F2BD8BB6400609560 /* Common */,
+				A752C55F2BD8BB6400609560 /* App */,
 				A752C52F2BD8B05A00609560 /* Preview Content */,
 				A752C52D2BD8B05A00609560 /* Assets.xcassets */,
 			);
@@ -173,13 +173,13 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
-		A752C55F2BD8BB6400609560 /* Common */ = {
+		A752C55F2BD8BB6400609560 /* App */ = {
 			isa = PBXGroup;
 			children = (
 				A752C5292BD8B04E00609560 /* LocalDevicesApp.swift */,
 				A752C52B2BD8B04E00609560 /* ContentView.swift */,
 			);
-			path = Common;
+			path = App;
 			sourceTree = "<group>";
 		};
 		A752C5602BD8BC4F00609560 /* Providers */ = {
@@ -498,7 +498,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"LocalDevices/Preview Content\"";
-				DEVELOPMENT_TEAM = V47CG24PVY;
+				DEVELOPMENT_TEAM = RYK6GDE7V9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -527,7 +527,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"LocalDevices/Preview Content\"";
-				DEVELOPMENT_TEAM = V47CG24PVY;
+				DEVELOPMENT_TEAM = RYK6GDE7V9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

@@ -10,5 +10,5 @@ import Network
 /// Represents entities that create `NWConnection` and `NWListener` objects based on a given host, port, and network protocol.
 protocol NetworkConnectionBuilder {
   func createConnection(host: NWEndpoint.Host, port: NWEndpoint.Port) -> NWConnection
-  func createListener(port: NWEndpoint.Port) throws -> NWListener
+  func createListener(port: NWEndpoint.Port, on queue: DispatchQueue) throws -> NWListener
 }
