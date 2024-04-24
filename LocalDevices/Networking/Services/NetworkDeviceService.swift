@@ -1,9 +1,8 @@
 //
 //  NetworkDeviceService.swift
-//  GCExpressCheckout
+//  LocalDevices
 //
 //  Created by Arnaldo Rozon on 4/23/24.
-//  Copyright © 2024 Guitar Center, Inc. All rights reserved.
 //
 
 import Foundation
