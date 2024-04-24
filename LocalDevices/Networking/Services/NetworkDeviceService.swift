@@ -52,11 +52,32 @@ class NetworkDeviceService: NetworkConnectable {
   }
   
   func startListener() throws {
-    guard let listener else {
+    guard let listener, let queue else {
       throw NetworkConnectionError.listenerFailure
     }
     
+    listener.newConnectionHandler = { [weak self] in
+      self?.handleNewConnection($0, on: queue)
+    }
+    
     listener.start(queue: .main)
+  }
+  
+  func handleNewConnection(_ connection: NWConnection, on queue: DispatchQueue) {
+    connection.receiveMessage { content, contentContext, isComplete, error in
+      guard error == nil else {
+        print("Error handling new connection: \(error as Any)")
+        return
+      }
+      
+      if let content, let message = String(data: content, encoding: .utf8) {
+        print("New connection content: \(message)")
+      } else {
+        print("New connection did not provide new message...")
+      }
+    }
+    
+    connection.start(queue: queue)
   }
   
 }
