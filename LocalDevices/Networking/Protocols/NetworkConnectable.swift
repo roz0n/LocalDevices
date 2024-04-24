@@ -13,4 +13,7 @@ protocol NetworkConnectable {
   var connection: NWConnection? { get }
   var listener: NWListener? { get }
   var queue: DispatchQueue { get }
+  
+  func startConnection() throws
+  func startListener() throws
 }

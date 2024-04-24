@@ -31,9 +31,14 @@ class NetworkDeviceService: NetworkConnectable {
     }
   }
   
+  deinit {
+    connection?.cancel()
+    listener?.cancel()
+  }
+  
   // MARK: - Connection
   
-  private func startConnection() throws {
+  func startConnection() throws {
     guard let connection else {
       throw NetworkConnectionError.connectionFailure
     }
@@ -41,7 +46,7 @@ class NetworkDeviceService: NetworkConnectable {
     connection.start(queue: queue)
   }
   
-  private func startListener() throws {
+  func startListener() throws {
     guard let listener else {
       throw NetworkConnectionError.listenerFailure
     }
