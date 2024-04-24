@@ -13,10 +13,10 @@ class NetworkDeviceService: NetworkConnectable {
   
   private (set) var connection: NWConnection?
   private (set) var listener: NWListener?
-  private (set) var queue: DispatchQueue?
+  private (set) var queue: DispatchQueue
   
   // MARK: - Lifecycle
-
+  
   /// A failable initializer that
   init?(host: NWEndpoint.Host,
         port: NWEndpoint.Port,
@@ -25,6 +25,7 @@ class NetworkDeviceService: NetworkConnectable {
     do {
       self.connection = provider.createConnection(host: host, port: port)
       self.listener = try provider.createListener(port: port, on: queue)
+      self.queue = queue
       
       try startConnection()
       try startListener()
@@ -48,19 +49,21 @@ class NetworkDeviceService: NetworkConnectable {
       throw NetworkConnectionError.connectionFailure
     }
     
-    connection.start(queue: .main)
+    connection.start(queue: queue)
   }
   
   func startListener() throws {
-    guard let listener, let queue else {
+    guard let listener else {
       throw NetworkConnectionError.listenerFailure
     }
     
     listener.newConnectionHandler = { [weak self] in
-      self?.handleNewConnection($0, on: queue)
+      if let queue = self?.queue {
+        self?.handleNewConnection($0, on: queue)
+      }
     }
     
-    listener.start(queue: .main)
+    listener.start(queue: queue)
   }
   
   func handleNewConnection(_ connection: NWConnection, on queue: DispatchQueue) {
