@@ -25,6 +25,9 @@
 		A752C5752BD9BC0100609560 /* LocalNetworkDeviceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752C5742BD9BC0100609560 /* LocalNetworkDeviceViewModel.swift */; };
 		A752C5772BD9BC7000609560 /* LocalDeviceCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752C5762BD9BC7000609560 /* LocalDeviceCellView.swift */; };
 		A752C57A2BD9BD5B00609560 /* LocalNetworkDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752C5792BD9BD5B00609560 /* LocalNetworkDevice.swift */; };
+		A752C57D2BD9F3C300609560 /* CryptoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A752C57C2BD9F3C300609560 /* CryptoSwift */; };
+		A752C5802BD9F42400609560 /* APGDeviceRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752C57F2BD9F42400609560 /* APGDeviceRequestBuilder.swift */; };
+		A752C5832BD9F45C00609560 /* DataExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752C5822BD9F45C00609560 /* DataExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +68,8 @@
 		A752C5742BD9BC0100609560 /* LocalNetworkDeviceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNetworkDeviceViewModel.swift; sourceTree = "<group>"; };
 		A752C5762BD9BC7000609560 /* LocalDeviceCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDeviceCellView.swift; sourceTree = "<group>"; };
 		A752C5792BD9BD5B00609560 /* LocalNetworkDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNetworkDevice.swift; sourceTree = "<group>"; };
+		A752C57F2BD9F42400609560 /* APGDeviceRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APGDeviceRequestBuilder.swift; sourceTree = "<group>"; };
+		A752C5822BD9F45C00609560 /* DataExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +78,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A752C5732BD9B86400609560 /* XMLCoder in Frameworks */,
+				A752C57D2BD9F3C300609560 /* CryptoSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -116,6 +122,8 @@
 		A752C5282BD8B04E00609560 /* LocalDevices */ = {
 			isa = PBXGroup;
 			children = (
+				A752C5812BD9F45300609560 /* Extensions */,
+				A752C57E2BD9F40900609560 /* APG Cash Drawer */,
 				A752C5692BD8E6CF00609560 /* Home */,
 				A752C5532BD8B06500609560 /* Networking */,
 				A752C55F2BD8BB6400609560 /* App */,
@@ -247,6 +255,22 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		A752C57E2BD9F40900609560 /* APG Cash Drawer */ = {
+			isa = PBXGroup;
+			children = (
+				A752C57F2BD9F42400609560 /* APGDeviceRequestBuilder.swift */,
+			);
+			path = "APG Cash Drawer";
+			sourceTree = "<group>";
+		};
+		A752C5812BD9F45300609560 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A752C5822BD9F45C00609560 /* DataExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -265,6 +289,7 @@
 			name = LocalDevices;
 			packageProductDependencies = (
 				A752C5722BD9B86400609560 /* XMLCoder */,
+				A752C57C2BD9F3C300609560 /* CryptoSwift */,
 			);
 			productName = LocalDevices;
 			productReference = A752C5262BD8B04E00609560 /* LocalDevices.app */;
@@ -340,6 +365,7 @@
 			mainGroup = A752C51D2BD8B04E00609560;
 			packageReferences = (
 				A752C5712BD9B86400609560 /* XCRemoteSwiftPackageReference "XMLCoder" */,
+				A752C57B2BD9F3C300609560 /* XCRemoteSwiftPackageReference "CryptoSwift" */,
 			);
 			productRefGroup = A752C5272BD8B04E00609560 /* Products */;
 			projectDirPath = "";
@@ -392,7 +418,9 @@
 				A752C55E2BD8BB5000609560 /* NetworkConnectionProvider.swift in Sources */,
 				A752C52C2BD8B04E00609560 /* ContentView.swift in Sources */,
 				A752C52A2BD8B04E00609560 /* LocalDevicesApp.swift in Sources */,
+				A752C5802BD9F42400609560 /* APGDeviceRequestBuilder.swift in Sources */,
 				A752C5662BD8BDB000609560 /* NetworkConnectionError.swift in Sources */,
+				A752C5832BD9F45C00609560 /* DataExtension.swift in Sources */,
 				A752C5772BD9BC7000609560 /* LocalDeviceCellView.swift in Sources */,
 				A752C55B2BD8BA0800609560 /* NetworkConnectionBuilder.swift in Sources */,
 			);
@@ -734,6 +762,14 @@
 				minimumVersion = 0.17.1;
 			};
 		};
+		A752C57B2BD9F3C300609560 /* XCRemoteSwiftPackageReference "CryptoSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/krzyzanowskim/CryptoSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.8.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -741,6 +777,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A752C5712BD9B86400609560 /* XCRemoteSwiftPackageReference "XMLCoder" */;
 			productName = XMLCoder;
+		};
+		A752C57C2BD9F3C300609560 /* CryptoSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A752C57B2BD9F3C300609560 /* XCRemoteSwiftPackageReference "CryptoSwift" */;
+			productName = CryptoSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

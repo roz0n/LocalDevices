@@ -16,7 +16,9 @@ class NetworkDeviceService: NetworkConnectable {
   private (set) var connection: NWConnection?
   private (set) var listener: NWListener?
   private (set) var queue: DispatchQueue
+  
   private (set) var deviceDiscoveryPublisher = PassthroughSubject<LocalNetworkDevice, Never>()
+  private (set) var deviceMessageErrorPublisher = PassthroughSubject<NWError, Never>()
   
   // MARK: - Lifecycle
   
@@ -92,14 +94,24 @@ class NetworkDeviceService: NetworkConnectable {
   
   // MARK: - Transmission
   
-  func sendNonceRequest() {
+  func sendContent(_ content: Data) throws {
     guard let connection else {
-      return
+      throw NetworkConnectionError.connectionFailure
     }
     
-    connection.send(content: Data(), completion: .contentProcessed({ sendError in
-      print("Error sending request: \(sendError as Any)")
+    connection.send(content: content, completion: .contentProcessed({ [weak self] error in
+      if let error {
+        self?.deviceMessageErrorPublisher.send(error)
+      }
+      
+      // Prepare to listen for an incoming response from the drawer
     }))
+  }
+  
+  func getResponse() {
+    connection?.receive(minimumIncompleteLength: 1, maximumLength: 4096, completion: { content, contentContext, isComplete, error in
+      // Handle response
+    })
   }
   
 }
