@@ -1,5 +1,5 @@
 //
-//  APGDeviceRequestBuilder.swift
+//  APGRequestBuilder.swift
 //  LocalDevices
 //
 //  Created by Arnaldo Rozon on 4/24/24.
@@ -8,7 +8,7 @@
 import Foundation
 import CryptoSwift
 
-struct APGDeviceRequestBuilder {
+struct APGRequestBuilder {
   
   var device: LocalNetworkDevice
   
@@ -118,21 +118,10 @@ struct APGDeviceRequestBuilder {
     cipherTextData.append(requestStringData!)
     cipherTextData.append(separator)
 
-    // Apply PKCS7 padding
-    let paddingLength = 16 - cipherTextData.count % 16
-
-    if paddingLength > 0 {
-      cipherTextData.append(0x80)  // First padding byte is 0x80
-      
-      if paddingLength > 1 {
-        cipherTextData.append(contentsOf: repeatElement(0x00, count: paddingLength - 1))
-      }
-    }
-
     print(cipherTextData as NSData)
 
     // 7. Create the actual encrypted cipher text
-    let aes = try? AES(key: aesKey!.bytes, blockMode: CBC(iv: initVectorData!.bytes), padding: .noPadding)
+    let aes = try? AES(key: aesKey!.bytes, blockMode: CBC(iv: initVectorData!.bytes), padding: .pkcs7)
     let encryptedCipherText = try? aes?.encrypt(cipherTextData.bytes)
     let encryptedData = Data(encryptedCipherText!)
 
