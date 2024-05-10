@@ -28,6 +28,8 @@
 		A752C57D2BD9F3C300609560 /* CryptoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A752C57C2BD9F3C300609560 /* CryptoSwift */; };
 		A752C5802BD9F42400609560 /* APGRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752C57F2BD9F42400609560 /* APGRequestBuilder.swift */; };
 		A752C5832BD9F45C00609560 /* DataExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752C5822BD9F45C00609560 /* DataExtension.swift */; };
+		A7A0DBB22BEDDDB000EEE080 /* TCPService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A0DBB12BEDDDB000EEE080 /* TCPService.swift */; };
+		A7A0DBB42BEDDDDD00EEE080 /* TCPViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A0DBB32BEDDDDD00EEE080 /* TCPViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +72,8 @@
 		A752C5792BD9BD5B00609560 /* LocalNetworkDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNetworkDevice.swift; sourceTree = "<group>"; };
 		A752C57F2BD9F42400609560 /* APGRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APGRequestBuilder.swift; sourceTree = "<group>"; };
 		A752C5822BD9F45C00609560 /* DataExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataExtension.swift; sourceTree = "<group>"; };
+		A7A0DBB12BEDDDB000EEE080 /* TCPService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCPService.swift; sourceTree = "<group>"; };
+		A7A0DBB32BEDDDDD00EEE080 /* TCPViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TCPViewModel.swift; path = LocalDevices/Networking/TCPViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +106,7 @@
 		A752C51D2BD8B04E00609560 = {
 			isa = PBXGroup;
 			children = (
+				A7A0DBB32BEDDDDD00EEE080 /* TCPViewModel.swift */,
 				A752C5282BD8B04E00609560 /* LocalDevices */,
 				A752C5392BD8B05A00609560 /* LocalDevicesTests */,
 				A752C5432BD8B05A00609560 /* LocalDevicesUITests */,
@@ -165,6 +170,7 @@
 				A752C5572BD8B9E100609560 /* Protocols */,
 				A752C55C2BD8BACE00609560 /* Utilities */,
 				A752C5542BD8B07C00609560 /* Services */,
+				A7A0DBB12BEDDDB000EEE080 /* TCPService.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -409,6 +415,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7A0DBB42BEDDDDD00EEE080 /* TCPViewModel.swift in Sources */,
 				A752C57A2BD9BD5B00609560 /* LocalNetworkDevice.swift in Sources */,
 				A752C56F2BD8E73800609560 /* HomeView.swift in Sources */,
 				A752C5752BD9BC0100609560 /* LocalNetworkDeviceViewModel.swift in Sources */,
@@ -417,6 +424,7 @@
 				A752C56D2BD8E70000609560 /* HomeListViewModel.swift in Sources */,
 				A752C55E2BD8BB5000609560 /* NetworkConnectionProvider.swift in Sources */,
 				A752C52C2BD8B04E00609560 /* ContentView.swift in Sources */,
+				A7A0DBB22BEDDDB000EEE080 /* TCPService.swift in Sources */,
 				A752C52A2BD8B04E00609560 /* LocalDevicesApp.swift in Sources */,
 				A752C5802BD9F42400609560 /* APGRequestBuilder.swift in Sources */,
 				A752C5662BD8BDB000609560 /* NetworkConnectionError.swift in Sources */,

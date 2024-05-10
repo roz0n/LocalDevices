@@ -16,6 +16,7 @@ import Combine
 class NetworkDeviceListViewModel: ObservableObject {
   
   @Published var devices: [LocalNetworkDeviceViewModel]
+  @Published var isLoading: Bool = false
   
   private var service: NetworkDeviceService?
   private var cancellables: Set<AnyCancellable> = []
@@ -28,7 +29,18 @@ class NetworkDeviceListViewModel: ObservableObject {
       provider: NetworkConnectionProvider(protocol: .udp)
     )
     
+    isLoading = true
+    
     subscribeToDevices()
+    
+    let builder = APGRequestBuilder(device: LocalNetworkDevice(ipAddress: "192.168.0.18",
+                                                               macAddress: "xxx",
+                                                               serialNumber: "xxx",
+                                                               productName: "APG Atwood",
+                                                               productBarcode: "xxx"))
+    let message = builder.generateEncryptedMessage(type: .nonceRequest)
+    
+    sendContent(message)
   }
   
   private func subscribeToDevices() {
@@ -38,6 +50,14 @@ class NetworkDeviceListViewModel: ObservableObject {
         self?.devices.append(.init(device: device))
       })
       .store(in: &cancellables)
+  }
+  
+  func sendContent(_ data: Data) {
+    do {
+      try service?.sendContent(data)
+    } catch {
+      print("Error sending content: \(error.localizedDescription)\n\(error)")
+    }
   }
   
 }

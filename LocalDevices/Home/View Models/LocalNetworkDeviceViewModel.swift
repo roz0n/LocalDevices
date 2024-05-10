@@ -9,7 +9,7 @@ import Foundation
 
 final class LocalNetworkDeviceViewModel: ObservableObject {
   
-  private var device: LocalNetworkDevice
+  private (set) var device: LocalNetworkDevice
   
   // MARK: - Lifecycle
   
