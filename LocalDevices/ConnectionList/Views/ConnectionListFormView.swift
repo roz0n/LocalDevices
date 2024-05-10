@@ -10,7 +10,7 @@ import Network
 
 struct ConnectionListFormView: View {
   
-  @State var newConnectionSelectedProtocol: ConnectionProtocolIdentifier = .tcp
+  @State var newConnectionSelectedProtocol: Connection.ConnectionProtocol = .tcp
   @State var newConnectionNameText: String = ""
   @State var newConnectionPortText: String = ""
   @State var newConnectionHostAddress: String = ""
@@ -24,7 +24,7 @@ struct ConnectionListFormView: View {
     selectedPort == nil
   }
   
-  var selectedProtocol: NWParameters {
+  var protocolParameter: NWParameters {
     newConnectionSelectedProtocol == .tcp ? NWParameters.tcp : NWParameters.udp
   }
   
@@ -43,7 +43,7 @@ struct ConnectionListFormView: View {
     let newConnection = Connection(name: newConnectionNameText,
                                    host: newConnectionPortText,
                                    port: selectedPort ?? 0,
-                                   type: selectedProtocol)
+                                   dnsProtocol: newConnectionSelectedProtocol)
     let viewModel = ConnectionViewModel(connection: newConnection)
     
     onSubmit?(viewModel)
@@ -58,9 +58,9 @@ struct ConnectionListFormView: View {
           
           Picker("Protocol", selection: $newConnectionSelectedProtocol) {
             Text("TCP")
-              .tag(ConnectionProtocolIdentifier.tcp)
+              .tag(Connection.ConnectionProtocol.tcp)
             Text("UDP")
-              .tag(ConnectionProtocolIdentifier.udp)
+              .tag(Connection.ConnectionProtocol.udp)
           }
         }
         

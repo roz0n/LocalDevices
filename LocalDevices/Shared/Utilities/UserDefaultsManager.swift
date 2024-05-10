@@ -19,7 +19,7 @@ class UserDefaultsManager {
   
   func get<T: Codable>(_ key: String) throws -> T? {
     do {
-      guard let data = UserDefaults.value(forKey: key) as? Data else {
+      guard let data = UserDefaults.standard.value(forKey: key) as? Data else {
         throw UDMError.decodeFailure
       }
       
@@ -29,12 +29,13 @@ class UserDefaultsManager {
     }
   }
   
-  func set<T: Codable>(_ key: String, _ value: T, _ completion: ((T) -> Void)?) throws {
+  func set<T: Codable>(_ key: String, _ value: [T], _ completion: ((T?) -> Void)? = nil) throws {
     do {
       let data = try JSONEncoder().encode(value)
-      UserDefaults.setValue(data, forKey: key)
+      UserDefaults.standard.setValue(data, forKey: key)
       
-      completion?(try JSONDecoder().decode(T.self, from: data))
+      let decodedData = try JSONDecoder().decode([T].self, from: data)
+      completion?(decodedData.last)
     } catch {
       throw error
     }

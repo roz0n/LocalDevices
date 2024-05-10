@@ -9,11 +9,6 @@ import SwiftUI
 import Combine
 import Network
 
-enum ConnectionProtocolIdentifier: String {
-  case tcp
-  case udp
-}
-
 struct ConnectionListView: View {
   
   @StateObject private var listViewModel: ConnectionListViewModel = ConnectionListViewModel()
@@ -33,11 +28,28 @@ struct ConnectionListView: View {
               print("Selected: \(connectionViewModel.id)")
             }
         }
+        .swipeActions(edge: .trailing) {
+          Button {
+            print("Tapped delete")
+          } label: {
+            Image(systemName: "trash")
+          }
+          .tint(.red)
+        }
       } header: {
         if !listViewModel.connections.isEmpty {
-          Text("listViewModel.connections")
+          Text("Connections")
         }
       }
+    }
+    .task {
+      if listViewModel.connections.isEmpty {
+        listViewModel.load()
+        listViewModel.hasLoaded = true
+      }
+    }
+    .refreshable {
+      listViewModel.load()
     }
     .overlay {
       overlayContent
@@ -49,7 +61,8 @@ struct ConnectionListView: View {
     .navigationBarTitleDisplayMode(.inline)
     .sheet(isPresented: $isAddSheetPresented) {
       ConnectionListFormView { newConnection in
-        listViewModel.connections.append(newConnection)
+        listViewModel.add(newConnection)
+        isAddSheetPresented = false
       }
     }
     .confirmationDialog("Some Title Here",
@@ -69,7 +82,7 @@ extension ConnectionListView {
   
   @ViewBuilder
   private var overlayContent: some View {
-    if listViewModel.connections.isEmpty {
+    if listViewModel.connections.isEmpty, listViewModel.hasLoaded {
       ContentUnavailableView("No Connections",
                              systemImage: "circle.dotted.and.circle",
                              description: Text("Connections you make will appear here"))

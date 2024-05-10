@@ -8,6 +8,7 @@
 import Foundation
 
 struct NetworkDevice: Codable {
+  
   var id: String {
     "\(serialNumber):\(ipAddress):\(macAddress)"
   }
@@ -25,4 +26,5 @@ struct NetworkDevice: Codable {
     case productName = "ProductName"
     case productBarcode = "Barcode"
   }
+  
 }

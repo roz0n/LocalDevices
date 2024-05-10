@@ -29,6 +29,10 @@ class ConnectionViewModel: ObservableObject, Identifiable {
     "\(connection.port)"
   }
   
+  var dnsProtocol: String {
+    connection.dnsProtocol.rawValue
+  }
+  
   // MARK: - Lifecycle
   
   init(connection: Connection) {
@@ -36,7 +40,7 @@ class ConnectionViewModel: ObservableObject, Identifiable {
     self.connectionManager = NetworkConnectionManager(
       host: connection.host,
       port: connection.port,
-      type: connection.type
+      type: connection.protocolParameter
     )
     self.subscribeToConnectionState()
   }
