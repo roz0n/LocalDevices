@@ -18,6 +18,7 @@ struct HomeView: View {
   
   @State private var isAddSheetPresented: Bool = false
   @State private var newConnectionSelectedProtocol: LocalNetworkProtocol = .tcp
+  @State private var newConnectionNameText: String = ""
   @State private var newConnectionPortText: String = ""
   @State private var newConnectionHostAddress: String = ""
   
@@ -25,12 +26,13 @@ struct HomeView: View {
   
   private func resetForm() {
     newConnectionSelectedProtocol = .tcp
+    newConnectionNameText = ""
     newConnectionPortText = ""
     newConnectionHostAddress = ""
   }
   
   private var isFormDisabled: Bool {
-    newConnectionPortText.isEmpty || newConnectionHostAddress.isEmpty
+    newConnectionNameText.isEmpty || newConnectionPortText.isEmpty || newConnectionHostAddress.isEmpty
   }
   
   private var selectedProtocol: NWParameters {
@@ -43,87 +45,139 @@ struct HomeView: View {
   
   var body: some View {
     List {
-      ForEach(connections) { connectionViewModel in
-        VStack(alignment: .leading, spacing: 8) {
-          Text(connectionViewModel.name)
-          Text(connectionViewModel.port)
+      Section {
+        ForEach(connections) { connectionViewModel in
+          NetworkConnectionCell(viewModel: connectionViewModel)
+        }
+      } header: {
+        if !connections.isEmpty {
+          Text("Connections")
         }
       }
+    }
+    .overlay {
+      overlayContent
     }
     .toolbar {
-      ToolbarItem(placement: .topBarTrailing) {
-        Button {
-          isAddSheetPresented = true
-        } label: {
-          Image(systemName: "plus.circle")
-        }
-        .tint(.mint)
-      }
+      toolbarContent
     }
-    .navigationTitle("LocalDevices")
+    .navigationTitle("Networker")
     .navigationBarTitleDisplayMode(.inline)
     .sheet(isPresented: $isAddSheetPresented) {
-      NavigationStack {
-        Form {
-          Section("Connection Type") {
-            Picker("Protocol", selection: $newConnectionSelectedProtocol) {
-              Text("TCP")
-                .tag(LocalNetworkProtocol.tcp)
-              Text("UDP")
-                .tag(LocalNetworkProtocol.udp)
-            }
-          }
-          
-          Section("Host Configuration") {
-            LabeledContent {
-              TextField("IP Address", text: $newConnectionHostAddress)
-            } label: {
-              Image(systemName: "network")
-                .foregroundStyle(Color.purple)
-            }
-            
-            LabeledContent {
-              TextField("Port", text: $newConnectionPortText)
-            } label: {
-              Image(systemName: "app.connected.to.app.below.fill")
-                .foregroundStyle(Color.orange)
-            }
-          }
-          
-          Section {
-            HStack(alignment: .center) {
-              Spacer()
-              Button {
-                let newConnection = TCPViewModel(host: newConnectionPortText,
-                                                 port: selectedPort,
-                                                 type: selectedProtocol)
-                connections.append(newConnection)
-                isAddSheetPresented = false
-                resetForm()
-              } label: {
-                HStack(spacing: 8) {
-                  Image(systemName: "powercord.fill")
-                  Text("Connect")
-                    .bold()
-                }
-                .padding(.vertical, 4)
-                .padding(.horizontal, 8)
-              }
-              .buttonBorderShape(.capsule)
-              .buttonStyle(.bordered)
-              .tint(.mint)
-              .disabled(isFormDisabled)
-              Spacer()
-            }
-          }
-          .listRowBackground(Color.clear)
-        }
-        .navigationTitle("New Connection")
-        .navigationBarTitleDisplayMode(.inline)
-      }
-      .presentationDragIndicator(.visible)
+      sheetContent
     }
   }
+  
+}
+
+// MARK: - View Content
+
+extension HomeView {
+  
+  @ViewBuilder
+  private var overlayContent: some View {
+    if connections.isEmpty {
+      ContentUnavailableView("No Connections",
+                             systemImage: "externaldrive.connected.to.line.below",
+                             description: Text("Connections you add will appear here"))
+    } else {
+      EmptyView()
+    }
+  }
+  
+  @ToolbarContentBuilder
+  private var toolbarContent: some ToolbarContent {
+    ToolbarItem(placement: .topBarTrailing) {
+      Button {
+        isAddSheetPresented = true
+      } label: {
+        Image(systemName: "plus.circle")
+      }
+      .tint(.mint)
+    }
+  }
+  
+  private var sheetContent: some View {
+    NavigationStack {
+      Form {
+        Section("Connection Details") {
+          TextField("Name", text: $newConnectionNameText)
+          
+          Picker("Protocol", selection: $newConnectionSelectedProtocol) {
+            Text("TCP")
+              .tag(LocalNetworkProtocol.tcp)
+            Text("UDP")
+              .tag(LocalNetworkProtocol.udp)
+          }
+        }
+        
+        Section("Host Configuration") {
+          LabeledContent {
+            TextField("IP Address", text: $newConnectionHostAddress)
+          } label: {
+            Image(systemName: "network")
+              .foregroundStyle(Color.purple)
+          }
+          
+          LabeledContent {
+            TextField("Port", text: $newConnectionPortText)
+          } label: {
+            Image(systemName: "app.connected.to.app.below.fill")
+              .foregroundStyle(Color.orange)
+          }
+        }
+        
+        Section {
+          HStack(alignment: .center) {
+            Spacer()
+            Button {
+              let newConnection = TCPViewModel(name: newConnectionNameText,
+                                               host: newConnectionPortText,
+                                               port: selectedPort,
+                                               type: selectedProtocol)
+              connections.append(newConnection)
+              isAddSheetPresented = false
+              resetForm()
+            } label: {
+              HStack(spacing: 8) {
+                Image(systemName: "powercord.fill")
+                Text("Connect")
+                  .bold()
+              }
+              .padding(.vertical, 4)
+              .padding(.horizontal, 8)
+            }
+            .buttonBorderShape(.capsule)
+            .buttonStyle(.bordered)
+            .tint(.mint)
+            .disabled(isFormDisabled)
+            Spacer()
+          }
+        }
+        .listRowBackground(Color.clear)
+      }
+      .navigationTitle("New Connection")
+      .navigationBarTitleDisplayMode(.inline)
+      .tint(.mint)
+    }
+    .presentationDragIndicator(.visible)
+  }
+  
+}
+
+struct NetworkConnectionCell: View {
+  
+  var viewModel: TCPViewModel
+  
+  var body: some View {
+    VStack(alignment: .leading, spacing: 8) {
+      Text(viewModel.name)
+        .bold()
+      Text(viewModel.port)
+        .monospaced()
+    }
+  }
+  
 }
 
 #Preview {

@@ -9,24 +9,35 @@ import Foundation
 import Combine
 import Network
 
-let device = LocalNetworkDevice(
-  ipAddress: "192.168.0.13",
-  macAddress: "70:B3:D5:BC:F8:D6",
-  serialNumber: "429004699",
-  productName: "APG Atwood",
-  productBarcode: ""
-)
-
-let apgRequestBuilder = APGRequestBuilder(device: device)
+//let device = LocalNetworkDevice(
+//  ipAddress: "192.168.0.13",
+//  macAddress: "70:B3:D5:BC:F8:D6",
+//  serialNumber: "429004699",
+//  productName: "APG Atwood",
+//  productBarcode: ""
+//)
+//
+//let apgRequestBuilder = APGRequestBuilder(device: device)
 
 class TCPViewModel: ObservableObject, Identifiable {
   
-  @Published var connectionState: NWConnection.State? = nil
+//  @Published var connectionState: NWConnection.State? = nil
   
-  private (set) var connectionManager: LocalNetworkConnectionManager
+  private var connectionManager: LocalNetworkConnectionManager
   private var cancellables: Set<AnyCancellable> = []
+  
+  var name: String
+  
+  var port: String {
+    "\(Int(connectionManager.port.rawValue))"
+  }
+  
+  var id: String {
+    "\(name)-\(self.port)"
+  }
 
-  init(host: String, port: UInt16, type: NWParameters) {
+  init(name: String, host: String, port: UInt16, type: NWParameters) {
+    self.name = name
     self.connectionManager = LocalNetworkConnectionManager(host: host, port: port, type: type)
     
     //    self.connectionManager.connectionStatePublisher
@@ -38,17 +49,12 @@ class TCPViewModel: ObservableObject, Identifiable {
     //      }.store(in: &cancellables)
   }
   
-  /// IP address as string
-  var name: String {
-    connectionManager.host.interface?.name ?? "Unnamed connection"
+  func connect() {
+    connectionManager.connect()
   }
   
-  var port: String {
-    "\(Int(connectionManager.port.rawValue))"
-  }
-  
-  var id: String {
-    "\(name)-\(self.port)"
+  func sendData(_ data: Data) {
+    connectionManager.send(message: data)
   }
   
 }
