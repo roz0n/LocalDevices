@@ -10,7 +10,7 @@ import CryptoSwift
 
 struct APGRequestBuilder {
   
-  var device: LocalNetworkDevice
+  var device: NetworkDevice
   
   static let aesKey: Data = Data(hex: "a5003c5f8bee76b19e512b8c7cdec4089188d5e60b302aaf95a463291b568e56")!
   static let hmacKey: Data = Data(hex: "766755bf8a6fa21aa257a934aca57e25388d92b67c410fc63d082ec1a2e211e3")!

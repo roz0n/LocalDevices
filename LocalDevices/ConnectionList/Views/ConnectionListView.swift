@@ -27,15 +27,13 @@ struct ConnectionListView: View {
   @State private var isAddSheetPresented: Bool = false
   @State private var isActionMenuPresented: Bool = false
   
-  private func resetForm() {
-    newConnectionSelectedProtocol = .tcp
-    newConnectionNameText = ""
-    newConnectionPortText = ""
-    newConnectionHostAddress = ""
-  }
+  // MARK: - Computeds
   
   private var isFormDisabled: Bool {
-    newConnectionNameText.isEmpty || newConnectionPortText.isEmpty || newConnectionHostAddress.isEmpty
+    newConnectionNameText.isEmpty ||
+    newConnectionPortText.isEmpty ||
+    newConnectionHostAddress.isEmpty ||
+    selectedPort == nil
   }
   
   private var selectedProtocol: NWParameters {
@@ -45,6 +43,25 @@ struct ConnectionListView: View {
   private var selectedPort: UInt16? {
     UInt16(newConnectionPortText)
   }
+  
+  private var allConnections: [Connection] {
+    connections.map { $0.connection }
+  }
+  
+  // MARK: - Helpers
+  
+  private func resetForm() {
+    newConnectionSelectedProtocol = .tcp
+    newConnectionNameText = ""
+    newConnectionPortText = ""
+    newConnectionHostAddress = ""
+  }
+  
+  func populateConnections() {
+    // Go into user defaults and get a list of connections
+  }
+  
+  // MARK: - Body
   
   var body: some View {
     List {
@@ -86,9 +103,9 @@ struct ConnectionListView: View {
   
 }
 
-// MARK: - View Content
-
 extension ConnectionListView {
+  
+  // MARK: - View Content
   
   @ViewBuilder
   private var overlayContent: some View {
@@ -147,12 +164,15 @@ extension ConnectionListView {
           HStack(alignment: .center) {
             Spacer()
             Button {
-              let newConnection = ConnectionViewModel(name: newConnectionNameText,
-                                               host: newConnectionPortText,
-                                               port: selectedPort ?? 0,
-                                               type: selectedProtocol)
+              let newConnection = Connection(name: newConnectionNameText,
+                                             host: newConnectionPortText,
+                                             port: selectedPort ?? 0,
+                                             type: selectedProtocol)
+              let viewModel = ConnectionViewModel(connection: newConnection)
+              
               // FIXME: Instead of appending, save this to user defaults
-              connections.append(newConnection)
+              //              UserDefaultsManager.shared.set(String, connections)
+              connections.append(viewModel)
               isAddSheetPresented = false
               resetForm()
             } label: {

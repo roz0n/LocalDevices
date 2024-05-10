@@ -1,5 +1,5 @@
 //
-//  LocalNetworkDevice.swift
+//  NetworkDevice.swift
 //  LocalDevices
 //
 //  Created by Arnaldo Rozon on 4/24/24.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct LocalNetworkDevice: Codable {
+struct NetworkDevice: Codable {
   var id: String {
     "\(serialNumber):\(ipAddress):\(macAddress)"
   }

@@ -1,5 +1,5 @@
 //
-//  LocalNetworkDeviceViewModel.swift
+//  NetworkDeviceViewModel.swift
 //  LocalDevices
 //
 //  Created by Arnaldo Rozon on 4/24/24.
@@ -7,13 +7,13 @@
 
 import Foundation
 
-final class LocalNetworkDeviceViewModel: ObservableObject {
+final class NetworkDeviceViewModel: ObservableObject {
   
-  private (set) var device: LocalNetworkDevice
+  private (set) var device: NetworkDevice
   
   // MARK: - Lifecycle
   
-  init(device: LocalNetworkDevice) {
+  init(device: NetworkDevice) {
     self.device = device
   }
   
@@ -41,9 +41,9 @@ final class LocalNetworkDeviceViewModel: ObservableObject {
   
 }
 
-extension LocalNetworkDeviceViewModel: Identifiable, Hashable {
+extension NetworkDeviceViewModel: Identifiable, Hashable {
   
-  static func == (lhs: LocalNetworkDeviceViewModel, rhs: LocalNetworkDeviceViewModel) -> Bool {
+  static func == (lhs: NetworkDeviceViewModel, rhs: NetworkDeviceViewModel) -> Bool {
     lhs.device.id == rhs.device.id
   }
   

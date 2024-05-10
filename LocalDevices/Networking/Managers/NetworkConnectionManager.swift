@@ -62,4 +62,8 @@ class NetworkConnectionManager {
     }
   }
   
+  func cancel() {
+    connection?.cancel()
+  }
+  
 }

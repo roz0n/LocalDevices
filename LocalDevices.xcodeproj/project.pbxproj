@@ -14,21 +14,21 @@
 		A752C53B2BD8B05A00609560 /* LocalDevicesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752C53A2BD8B05A00609560 /* LocalDevicesTests.swift */; };
 		A752C5452BD8B05A00609560 /* LocalDevicesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752C5442BD8B05A00609560 /* LocalDevicesUITests.swift */; };
 		A752C5472BD8B05A00609560 /* LocalDevicesUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752C5462BD8B05A00609560 /* LocalDevicesUITestsLaunchTests.swift */; };
-		A752C5562BD8B09000609560 /* ____NetworkDeviceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752C5552BD8B09000609560 /* ____NetworkDeviceService.swift */; };
 		A752C5592BD8B9EA00609560 /* NetworkConnectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752C5582BD8B9EA00609560 /* NetworkConnectable.swift */; };
 		A752C55B2BD8BA0800609560 /* NetworkConnectionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752C55A2BD8BA0800609560 /* NetworkConnectionBuilder.swift */; };
 		A752C55E2BD8BB5000609560 /* NetworkConnectionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752C55D2BD8BB5000609560 /* NetworkConnectionProvider.swift */; };
 		A752C5662BD8BDB000609560 /* NetworkConnectionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752C5652BD8BDB000609560 /* NetworkConnectionError.swift */; };
-		A752C56D2BD8E70000609560 /* HomeListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752C56C2BD8E70000609560 /* HomeListViewModel.swift */; };
 		A752C56F2BD8E73800609560 /* ConnectionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752C56E2BD8E73800609560 /* ConnectionListView.swift */; };
 		A752C5732BD9B86400609560 /* XMLCoder in Frameworks */ = {isa = PBXBuildFile; productRef = A752C5722BD9B86400609560 /* XMLCoder */; };
-		A752C5752BD9BC0100609560 /* LocalNetworkDeviceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752C5742BD9BC0100609560 /* LocalNetworkDeviceViewModel.swift */; };
-		A752C57A2BD9BD5B00609560 /* LocalNetworkDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752C5792BD9BD5B00609560 /* LocalNetworkDevice.swift */; };
+		A752C5752BD9BC0100609560 /* NetworkDeviceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752C5742BD9BC0100609560 /* NetworkDeviceViewModel.swift */; };
+		A752C57A2BD9BD5B00609560 /* NetworkDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752C5792BD9BD5B00609560 /* NetworkDevice.swift */; };
 		A752C57D2BD9F3C300609560 /* CryptoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A752C57C2BD9F3C300609560 /* CryptoSwift */; };
 		A752C5802BD9F42400609560 /* APGRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752C57F2BD9F42400609560 /* APGRequestBuilder.swift */; };
 		A752C5832BD9F45C00609560 /* DataExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752C5822BD9F45C00609560 /* DataExtension.swift */; };
 		A7A0DBB22BEDDDB000EEE080 /* NetworkConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A0DBB12BEDDDB000EEE080 /* NetworkConnectionManager.swift */; };
 		A7A0DBB42BEDDDDD00EEE080 /* ConnectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A0DBB32BEDDDDD00EEE080 /* ConnectionViewModel.swift */; };
+		A7A0DBB92BEEB4BF00EEE080 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A0DBB82BEEB4BF00EEE080 /* UserDefaultsManager.swift */; };
+		A7A0DBBC2BEEB72E00EEE080 /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A0DBBB2BEEB72E00EEE080 /* Connection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,19 +59,19 @@
 		A752C5402BD8B05A00609560 /* LocalDevicesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocalDevicesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A752C5442BD8B05A00609560 /* LocalDevicesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDevicesUITests.swift; sourceTree = "<group>"; };
 		A752C5462BD8B05A00609560 /* LocalDevicesUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDevicesUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		A752C5552BD8B09000609560 /* ____NetworkDeviceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "____NetworkDeviceService.swift"; sourceTree = "<group>"; };
 		A752C5582BD8B9EA00609560 /* NetworkConnectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConnectable.swift; sourceTree = "<group>"; };
 		A752C55A2BD8BA0800609560 /* NetworkConnectionBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConnectionBuilder.swift; sourceTree = "<group>"; };
 		A752C55D2BD8BB5000609560 /* NetworkConnectionProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConnectionProvider.swift; sourceTree = "<group>"; };
 		A752C5652BD8BDB000609560 /* NetworkConnectionError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConnectionError.swift; sourceTree = "<group>"; };
-		A752C56C2BD8E70000609560 /* HomeListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeListViewModel.swift; sourceTree = "<group>"; };
 		A752C56E2BD8E73800609560 /* ConnectionListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionListView.swift; sourceTree = "<group>"; };
-		A752C5742BD9BC0100609560 /* LocalNetworkDeviceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNetworkDeviceViewModel.swift; sourceTree = "<group>"; };
-		A752C5792BD9BD5B00609560 /* LocalNetworkDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNetworkDevice.swift; sourceTree = "<group>"; };
+		A752C5742BD9BC0100609560 /* NetworkDeviceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDeviceViewModel.swift; sourceTree = "<group>"; };
+		A752C5792BD9BD5B00609560 /* NetworkDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDevice.swift; sourceTree = "<group>"; };
 		A752C57F2BD9F42400609560 /* APGRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APGRequestBuilder.swift; sourceTree = "<group>"; };
 		A752C5822BD9F45C00609560 /* DataExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataExtension.swift; sourceTree = "<group>"; };
 		A7A0DBB12BEDDDB000EEE080 /* NetworkConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConnectionManager.swift; sourceTree = "<group>"; };
 		A7A0DBB32BEDDDDD00EEE080 /* ConnectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionViewModel.swift; sourceTree = "<group>"; };
+		A7A0DBB82BEEB4BF00EEE080 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
+		A7A0DBBB2BEEB72E00EEE080 /* Connection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +124,7 @@
 		A752C5282BD8B04E00609560 /* LocalDevices */ = {
 			isa = PBXGroup;
 			children = (
+				A7A0DBB62BEEB49600EEE080 /* Shared */,
 				A752C5812BD9F45300609560 /* Extensions */,
 				A752C57E2BD9F40900609560 /* APG */,
 				A752C5692BD8E6CF00609560 /* ConnectionList */,
@@ -167,18 +168,8 @@
 				A752C5642BD8BD9200609560 /* Enums */,
 				A752C5572BD8B9E100609560 /* Protocols */,
 				A752C55C2BD8BACE00609560 /* Utilities */,
-				A752C5542BD8B07C00609560 /* Services */,
 			);
 			path = Networking;
-			sourceTree = "<group>";
-		};
-		A752C5542BD8B07C00609560 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				A752C5782BD9BD4000609560 /* Models */,
-				A752C5552BD8B09000609560 /* ____NetworkDeviceService.swift */,
-			);
-			path = Services;
 			sourceTree = "<group>";
 		};
 		A752C5572BD8B9E100609560 /* Protocols */ = {
@@ -226,6 +217,7 @@
 		A752C5692BD8E6CF00609560 /* ConnectionList */ = {
 			isa = PBXGroup;
 			children = (
+				A7A0DBBA2BEEB72000EEE080 /* Models */,
 				A752C56B2BD8E6DC00609560 /* View Models */,
 				A752C56A2BD8E6D700609560 /* Views */,
 			);
@@ -244,18 +236,9 @@
 			isa = PBXGroup;
 			children = (
 				A7A0DBB32BEDDDDD00EEE080 /* ConnectionViewModel.swift */,
-				A752C56C2BD8E70000609560 /* HomeListViewModel.swift */,
-				A752C5742BD9BC0100609560 /* LocalNetworkDeviceViewModel.swift */,
+				A752C5742BD9BC0100609560 /* NetworkDeviceViewModel.swift */,
 			);
 			path = "View Models";
-			sourceTree = "<group>";
-		};
-		A752C5782BD9BD4000609560 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				A752C5792BD9BD5B00609560 /* LocalNetworkDevice.swift */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		A752C57E2BD9F40900609560 /* APG */ = {
@@ -280,6 +263,31 @@
 				A7A0DBB12BEDDDB000EEE080 /* NetworkConnectionManager.swift */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		A7A0DBB62BEEB49600EEE080 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				A7A0DBB72BEEB4B300EEE080 /* Utilities */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		A7A0DBB72BEEB4B300EEE080 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				A7A0DBB82BEEB4BF00EEE080 /* UserDefaultsManager.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		A7A0DBBA2BEEB72000EEE080 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A7A0DBBB2BEEB72E00EEE080 /* Connection.swift */,
+				A752C5792BD9BD5B00609560 /* NetworkDevice.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -421,15 +429,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				A7A0DBB42BEDDDDD00EEE080 /* ConnectionViewModel.swift in Sources */,
-				A752C57A2BD9BD5B00609560 /* LocalNetworkDevice.swift in Sources */,
+				A752C57A2BD9BD5B00609560 /* NetworkDevice.swift in Sources */,
 				A752C56F2BD8E73800609560 /* ConnectionListView.swift in Sources */,
-				A752C5752BD9BC0100609560 /* LocalNetworkDeviceViewModel.swift in Sources */,
-				A752C5562BD8B09000609560 /* ____NetworkDeviceService.swift in Sources */,
+				A752C5752BD9BC0100609560 /* NetworkDeviceViewModel.swift in Sources */,
 				A752C5592BD8B9EA00609560 /* NetworkConnectable.swift in Sources */,
-				A752C56D2BD8E70000609560 /* HomeListViewModel.swift in Sources */,
+				A7A0DBB92BEEB4BF00EEE080 /* UserDefaultsManager.swift in Sources */,
 				A752C55E2BD8BB5000609560 /* NetworkConnectionProvider.swift in Sources */,
 				A752C52C2BD8B04E00609560 /* ContentView.swift in Sources */,
 				A7A0DBB22BEDDDB000EEE080 /* NetworkConnectionManager.swift in Sources */,
+				A7A0DBBC2BEEB72E00EEE080 /* Connection.swift in Sources */,
 				A752C52A2BD8B04E00609560 /* LocalDevicesApp.swift in Sources */,
 				A752C5802BD9F42400609560 /* APGRequestBuilder.swift in Sources */,
 				A752C5662BD8BDB000609560 /* NetworkConnectionError.swift in Sources */,
