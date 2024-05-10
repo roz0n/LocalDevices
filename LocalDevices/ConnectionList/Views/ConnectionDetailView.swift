@@ -44,7 +44,39 @@ struct ConnectionDetailView: View {
       
       Section {
         // We'll ad a button to send a UDP message here
-      }
+        if viewModel.type == .udp {
+          HStack(alignment: .center) {
+            Spacer()
+            Button {
+              print("Tapped connect")
+            } label: {
+              HStack(spacing: 8) {
+                Image(systemName: "powercord.fill")
+                Text("Connect")
+                  .bold()
+              }
+              .padding(.vertical, 4)
+              .padding(.horizontal, 8)
+            }
+            .buttonBorderShape(.capsule)
+            .buttonStyle(.bordered)
+            .tint(.green)
+            
+            Button {
+              print("Tapped cancel")
+            } label: {
+              Text("Cancel")
+                .font(.system(size: 16, weight: .semibold, design: .default))
+                .padding(.vertical, 4)
+                .padding(.horizontal, 8)
+            }
+            .buttonBorderShape(.capsule)
+            .buttonStyle(.bordered)
+            .tint(.red)
+            Spacer()
+          }
+        }
+      }.listRowBackground(Color.clear)
     }
     .navigationTitle("\(viewModel.name) (\(viewModel.dnsProtocol.uppercased()))")
   }

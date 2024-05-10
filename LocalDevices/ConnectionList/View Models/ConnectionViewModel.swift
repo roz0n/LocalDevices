@@ -37,6 +37,10 @@ class ConnectionViewModel: ObservableObject, Identifiable {
     connection.dnsProtocol.rawValue
   }
   
+  var type: Connection.ConnectionProtocol {
+    connection.dnsProtocol
+  }
+  
   // MARK: - Lifecycle
   
   init(connection: Connection) {
