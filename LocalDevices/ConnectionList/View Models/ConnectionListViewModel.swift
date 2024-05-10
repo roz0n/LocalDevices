@@ -25,6 +25,28 @@ final class ConnectionListViewModel: ObservableObject {
   
   // MARK: - Helpers
   
+  /// Loads all connections from user defaults and sets them to the `connections` property.
+  func load() {
+    // FIXME: - Add better error handling
+    
+    do {
+      isLoading = true
+      
+      defer {
+        isLoading = false
+      }
+      
+      guard let data: [Connection]? = try UserDefaultsManager.shared.get(ConnectionListViewModel.userDefaultsKey), let data else {
+        return
+      }
+      
+      connections = data.compactMap { .init(connection: $0) }
+      print("Loaded connections: \(data as Any)")
+    } catch {
+      print("Error unable to fetch conneciton list: \(error)")
+    }
+  }
+  
   /// Adds a new connection to the connections list.
   func add(_ connection: ConnectionViewModel) {
     do {
@@ -53,10 +75,8 @@ final class ConnectionListViewModel: ObservableObject {
     }
   }
   
-  /// Loads all connections from user defaults and sets them to the `connections` property.
-  func load() {
-    // FIXME: - Add better error handling
-    
+  /// Removes a connection from the list.
+  func delete(at offsets: IndexSet) {
     do {
       isLoading = true
       
@@ -64,20 +84,18 @@ final class ConnectionListViewModel: ObservableObject {
         isLoading = false
       }
       
-      guard let data: [Connection]? = try UserDefaultsManager.shared.get(ConnectionListViewModel.userDefaultsKey), let data else {
-        return
-      }
+      var updatedConnections = connections
+      updatedConnections.remove(atOffsets: offsets)
       
-      connections = data.compactMap { .init(connection: $0) }
-      print("Loaded connections: \(data as Any)")
+      let updatedList = updatedConnections.map { $0.connection }
+      
+      try UserDefaultsManager.shared.set(ConnectionListViewModel.userDefaultsKey, updatedList) { [weak self] _ in
+        self?.connections = updatedConnections
+        print("Updated list after removing items")
+      }
     } catch {
-      print("Error unable to fetch conneciton list: \(error)")
+      print("Error - Unable to delete connection: \(error)")
     }
-  }
-  
-  /// Removes a connection from the list.
-  func delete(at offsets: IndexSet) {
-    
   }
   
 }

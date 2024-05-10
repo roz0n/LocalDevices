@@ -45,6 +45,10 @@ class ConnectionViewModel: ObservableObject, Identifiable {
     self.subscribeToConnectionState()
   }
   
+  deinit {
+    connectionManager.cancel()
+  }
+  
   // MARK: - Networking
   
   func connect() {

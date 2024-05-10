@@ -28,14 +28,7 @@ struct ConnectionListView: View {
               print("Selected: \(connectionViewModel.id)")
             }
         }
-        .swipeActions(edge: .trailing) {
-          Button {
-            print("Tapped delete")
-          } label: {
-            Image(systemName: "trash")
-          }
-          .tint(.red)
-        }
+        .onDelete(perform: listViewModel.delete(at:))
       } header: {
         if !listViewModel.connections.isEmpty {
           Text("Connections")
