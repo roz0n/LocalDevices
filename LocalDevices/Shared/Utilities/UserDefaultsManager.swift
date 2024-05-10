@@ -29,10 +29,12 @@ class UserDefaultsManager {
     }
   }
   
-  func set(_ key: String, _ value: Codable) throws {
+  func set<T: Codable>(_ key: String, _ value: T, _ completion: ((T) -> Void)?) throws {
     do {
       let data = try JSONEncoder().encode(value)
       UserDefaults.setValue(data, forKey: key)
+      
+      completion?(try JSONDecoder().decode(T.self, from: data))
     } catch {
       throw error
     }

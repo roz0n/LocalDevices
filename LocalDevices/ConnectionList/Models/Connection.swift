@@ -13,3 +13,12 @@ struct Connection {
   var port: UInt16
   var type: NWParameters
 }
+
+extension Connection {
+  
+  static var previewStub = Connection(name: "Test Connection",
+                               host: "192.168.0.6",
+                               port: 12345,
+                               type: .udp)
+  
+}
