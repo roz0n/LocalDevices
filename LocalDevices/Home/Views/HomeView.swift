@@ -16,13 +16,16 @@ enum LocalNetworkProtocol: String {
 
 struct HomeView: View {
   
-  @State private var isAddSheetPresented: Bool = false
   @State private var newConnectionSelectedProtocol: LocalNetworkProtocol = .tcp
   @State private var newConnectionNameText: String = ""
   @State private var newConnectionPortText: String = ""
   @State private var newConnectionHostAddress: String = ""
   
   @State private var connections: [TCPViewModel] = []
+  @State private var selectedConnection: TCPViewModel? = nil
+  
+  @State private var isAddSheetPresented: Bool = false
+  @State private var isActionMenuPresented: Bool = false
   
   private func resetForm() {
     newConnectionSelectedProtocol = .tcp
@@ -48,6 +51,10 @@ struct HomeView: View {
       Section {
         ForEach(connections) { connectionViewModel in
           NetworkConnectionCell(viewModel: connectionViewModel)
+            .onTapGesture {
+              isActionMenuPresented = true
+              print("Selected: \(selectedPort)")
+            }
         }
       } header: {
         if !connections.isEmpty {
@@ -66,6 +73,15 @@ struct HomeView: View {
     .sheet(isPresented: $isAddSheetPresented) {
       sheetContent
     }
+    .confirmationDialog("Some Title Here",
+                        isPresented: $isActionMenuPresented,
+                        presenting: $selectedConnection) { _ in
+      Button {
+        selectedConnection?.connect()
+      } label: {
+        Text("Initialize Connection")
+      }
+    }
   }
   
 }
@@ -78,7 +94,7 @@ extension HomeView {
   private var overlayContent: some View {
     if connections.isEmpty {
       ContentUnavailableView("No Connections",
-                             systemImage: "externaldrive.connected.to.line.below",
+                             systemImage: "circle.dotted.and.circle",
                              description: Text("Connections you add will appear here"))
     } else {
       EmptyView()
