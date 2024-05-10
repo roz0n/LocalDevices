@@ -1,5 +1,5 @@
 //
-//  NetworkDeviceListViewModel.swift
+//  ____NetworkDeviceListViewModel.swift
 //  LocalDevices
 //
 //  Created by Arnaldo Rozon on 4/24/24.
@@ -13,17 +13,17 @@ import Combine
 // [] Once we recieve an announce packet of the APG Atwood and store its contents, we'll know where to find the device. We need to open a TCP socket to the drawer and perform the TCP nonce exchange (page 11)
 // [] Once we get the TCP nonce request response, we need to send a TLSChangeCommand (page 12) (page 22)
 
-class NetworkDeviceListViewModel: ObservableObject {
+class ____NetworkDeviceListViewModel: ObservableObject {
   
   @Published var devices: [LocalNetworkDeviceViewModel]
   @Published var isLoading: Bool = false
   
-  private var service: NetworkDeviceService?
+  private var service: ____NetworkDeviceService?
   private var cancellables: Set<AnyCancellable> = []
   
   init(devices: [LocalNetworkDeviceViewModel] = []) {
     self.devices = devices
-    self.service = NetworkDeviceService(
+    self.service = ____NetworkDeviceService(
       host: .ipv4(.broadcast),
       port: 10004,
       provider: NetworkConnectionProvider(protocol: .udp)

@@ -1,5 +1,5 @@
 //
-//  HomeView.swift
+//  ConnectionListView.swift
 //  LocalDevices
 //
 //  Created by Arnaldo Rozon on 4/24/24.
@@ -9,20 +9,20 @@ import SwiftUI
 import Combine
 import Network
 
-enum LocalNetworkProtocol: String {
+enum ConnectionProtocolIdentifier: String {
   case tcp
   case udp
 }
 
-struct HomeView: View {
+struct ConnectionListView: View {
   
-  @State private var newConnectionSelectedProtocol: LocalNetworkProtocol = .tcp
+  @State private var newConnectionSelectedProtocol: ConnectionProtocolIdentifier = .tcp
   @State private var newConnectionNameText: String = ""
   @State private var newConnectionPortText: String = ""
   @State private var newConnectionHostAddress: String = ""
   
-  @State private var connections: [TCPViewModel] = []
-  @State private var selectedConnection: TCPViewModel? = nil
+  @State private var connections: [ConnectionViewModel] = []
+  @State private var selectedConnection: ConnectionViewModel? = nil
   
   @State private var isAddSheetPresented: Bool = false
   @State private var isActionMenuPresented: Bool = false
@@ -42,8 +42,8 @@ struct HomeView: View {
     newConnectionSelectedProtocol == .tcp ? NWParameters.tcp : NWParameters.udp
   }
   
-  private var selectedPort: UInt16 {
-    UInt16(Int(newConnectionPortText) ?? 0)
+  private var selectedPort: UInt16? {
+    UInt16(newConnectionPortText)
   }
   
   var body: some View {
@@ -53,7 +53,7 @@ struct HomeView: View {
           NetworkConnectionCell(viewModel: connectionViewModel)
             .onTapGesture {
               isActionMenuPresented = true
-              print("Selected: \(selectedPort)")
+              print("Selected: \(connectionViewModel.id)")
             }
         }
       } header: {
@@ -88,7 +88,7 @@ struct HomeView: View {
 
 // MARK: - View Content
 
-extension HomeView {
+extension ConnectionListView {
   
   @ViewBuilder
   private var overlayContent: some View {
@@ -121,9 +121,9 @@ extension HomeView {
           
           Picker("Protocol", selection: $newConnectionSelectedProtocol) {
             Text("TCP")
-              .tag(LocalNetworkProtocol.tcp)
+              .tag(ConnectionProtocolIdentifier.tcp)
             Text("UDP")
-              .tag(LocalNetworkProtocol.udp)
+              .tag(ConnectionProtocolIdentifier.udp)
           }
         }
         
@@ -147,10 +147,11 @@ extension HomeView {
           HStack(alignment: .center) {
             Spacer()
             Button {
-              let newConnection = TCPViewModel(name: newConnectionNameText,
+              let newConnection = ConnectionViewModel(name: newConnectionNameText,
                                                host: newConnectionPortText,
-                                               port: selectedPort,
+                                               port: selectedPort ?? 0,
                                                type: selectedProtocol)
+              // FIXME: Instead of appending, save this to user defaults
               connections.append(newConnection)
               isAddSheetPresented = false
               resetForm()
@@ -183,7 +184,7 @@ extension HomeView {
 
 struct NetworkConnectionCell: View {
   
-  var viewModel: TCPViewModel
+  var viewModel: ConnectionViewModel
   
   var body: some View {
     VStack(alignment: .leading, spacing: 8) {
@@ -197,5 +198,5 @@ struct NetworkConnectionCell: View {
 }
 
 #Preview {
-  HomeView()
+  ConnectionListView()
 }

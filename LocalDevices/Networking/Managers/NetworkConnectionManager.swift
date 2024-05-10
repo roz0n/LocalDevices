@@ -1,5 +1,5 @@
 //
-//  LocalNetworkConnectionManager.swift
+//  NetworkConnectionManager.swift
 //  LocalDevices
 //
 //  Created by Arnaldo Rozon on 5/9/24.
@@ -9,7 +9,7 @@ import Foundation
 import Network
 import Combine
 
-class LocalNetworkConnectionManager {
+class NetworkConnectionManager {
   
   private var connection: NWConnection?
   

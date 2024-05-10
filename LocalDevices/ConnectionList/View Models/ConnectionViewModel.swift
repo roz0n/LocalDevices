@@ -1,5 +1,5 @@
 //
-//  TCPViewModel.swift
+//  ConnectionViewModel.swift
 //  LocalDevices
 //
 //  Created by Arnaldo Rozon on 5/9/24.
@@ -19,12 +19,12 @@ let device = LocalNetworkDevice(
 
 let apgRequestBuilder = APGRequestBuilder(device: device)
 
-class TCPViewModel: ObservableObject, Identifiable {
+class ConnectionViewModel: ObservableObject, Identifiable {
     
   @Published var isConnectionReady: Bool = false
   @Published var isConnectionFailed: Bool = false
   
-  private var connectionManager: LocalNetworkConnectionManager
+  private var connectionManager: NetworkConnectionManager
   private var cancellables: Set<AnyCancellable> = []
   
   var name: String
@@ -39,7 +39,7 @@ class TCPViewModel: ObservableObject, Identifiable {
   
   init(name: String, host: String, port: UInt16, type: NWParameters) {
     self.name = name
-    self.connectionManager = LocalNetworkConnectionManager(host: host, port: port, type: type)
+    self.connectionManager = NetworkConnectionManager(host: host, port: port, type: type)
     
     self.connectionManager.connectionStatePublisher
       .receive(on: DispatchQueue.main)
@@ -68,6 +68,7 @@ class TCPViewModel: ObservableObject, Identifiable {
   }
   
   func connect() {
+    print("Connecting: \(name)")
     connectionManager.connect()
   }
   

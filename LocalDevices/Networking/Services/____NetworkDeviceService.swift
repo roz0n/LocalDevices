@@ -1,5 +1,5 @@
 //
-//  NetworkDeviceService.swift
+//  ____NetworkDeviceService.swift
 //  LocalDevices
 //
 //  Created by Arnaldo Rozon on 4/23/24.
@@ -12,7 +12,7 @@ import XMLCoder
 import CryptoSwift
 
 /// A service that both initializes and runs a connection and listener for a given host, port, and provider conforming to ``NetworkConnectionBuilder``.
-class NetworkDeviceService: NetworkConnectable {
+class ____NetworkDeviceService: NetworkConnectable {
   
   private (set) var connection: NWConnection?
   private (set) var listener: NWListener?
@@ -36,9 +36,9 @@ class NetworkDeviceService: NetworkConnectable {
       try startConnection()
       try startListener()
       
-      print("NetworkDeviceService init success!")
+      print("____NetworkDeviceService init success!")
     } catch {
-      print("Error initializing NetworkDeviceService: \(error.localizedDescription)\n\(error)")
+      print("Error initializing ____NetworkDeviceService: \(error.localizedDescription)\n\(error)")
       return nil
     }
   }
