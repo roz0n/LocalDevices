@@ -14,24 +14,24 @@ struct ConnectionListView: View {
   @StateObject private var listViewModel: ConnectionListViewModel = ConnectionListViewModel()
   
   @State private var isAddSheetPresented: Bool = false
-  @State private var isActionMenuPresented: Bool = false
+  @State private var isDetailViewPresented: Bool = false
   
   // MARK: - Body
   
   var body: some View {
     List {
       Section {
-        ForEach(listViewModel.connections) { connectionViewModel in
+        ForEach(listViewModel.connections.reversed()) { connectionViewModel in
           ConnectionCellView(viewModel: connectionViewModel)
             .onTapGesture {
-              isActionMenuPresented = true
-              print("Selected: \(connectionViewModel.id)")
+              listViewModel.selectedConnection = connectionViewModel
+              isDetailViewPresented = true
             }
         }
         .onDelete(perform: listViewModel.delete(at:))
       } header: {
         if !listViewModel.connections.isEmpty {
-          Text("Connections")
+          Text("\(listViewModel.connections.count) Connections")
         }
       }
     }
@@ -58,13 +58,9 @@ struct ConnectionListView: View {
         isAddSheetPresented = false
       }
     }
-    .confirmationDialog("Some Title Here",
-                        isPresented: $isActionMenuPresented,
-                        presenting: $listViewModel.selectedConnection) { _ in
-      Button {
-        listViewModel.selectedConnection?.connect()
-      } label: {
-        Text("Initialize Connection")
+    .navigationDestination(isPresented: $isDetailViewPresented) {
+      if let selectedConnection = listViewModel.selectedConnection {
+        ConnectionDetailView(viewModel: selectedConnection)
       }
     }
   }
@@ -92,7 +88,6 @@ extension ConnectionListView {
       } label: {
         Image(systemName: "plus.circle")
       }
-      .tint(.mint)
     }
   }
   

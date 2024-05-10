@@ -32,6 +32,7 @@
 		A7A0DBBE2BEEBE6300EEE080 /* ConnectionListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A0DBBD2BEEBE6300EEE080 /* ConnectionListViewModel.swift */; };
 		A7A0DBC02BEEC09800EEE080 /* ConnectionListFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A0DBBF2BEEC09800EEE080 /* ConnectionListFormView.swift */; };
 		A7A0DBC22BEEC25800EEE080 /* ConnectionCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A0DBC12BEEC25800EEE080 /* ConnectionCellView.swift */; };
+		A7A0DBC42BEEDB0500EEE080 /* ConnectionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A0DBC32BEEDB0500EEE080 /* ConnectionDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +79,7 @@
 		A7A0DBBD2BEEBE6300EEE080 /* ConnectionListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionListViewModel.swift; sourceTree = "<group>"; };
 		A7A0DBBF2BEEC09800EEE080 /* ConnectionListFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionListFormView.swift; sourceTree = "<group>"; };
 		A7A0DBC12BEEC25800EEE080 /* ConnectionCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionCellView.swift; sourceTree = "<group>"; };
+		A7A0DBC32BEEDB0500EEE080 /* ConnectionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,6 +238,7 @@
 				A752C56E2BD8E73800609560 /* ConnectionListView.swift */,
 				A7A0DBBF2BEEC09800EEE080 /* ConnectionListFormView.swift */,
 				A7A0DBC12BEEC25800EEE080 /* ConnectionCellView.swift */,
+				A7A0DBC32BEEDB0500EEE080 /* ConnectionDetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -439,6 +442,7 @@
 			files = (
 				A7A0DBBE2BEEBE6300EEE080 /* ConnectionListViewModel.swift in Sources */,
 				A7A0DBB42BEDDDDD00EEE080 /* ConnectionViewModel.swift in Sources */,
+				A7A0DBC42BEEDB0500EEE080 /* ConnectionDetailView.swift in Sources */,
 				A752C57A2BD9BD5B00609560 /* NetworkDevice.swift in Sources */,
 				A752C56F2BD8E73800609560 /* ConnectionListView.swift in Sources */,
 				A752C5752BD9BC0100609560 /* NetworkDeviceViewModel.swift in Sources */,

@@ -41,7 +41,7 @@ struct ConnectionListFormView: View {
   
   private func handleSubmit() {
     let newConnection = Connection(name: newConnectionNameText,
-                                   host: newConnectionPortText,
+                                   host: newConnectionHostAddress,
                                    port: selectedPort ?? 0,
                                    dnsProtocol: newConnectionSelectedProtocol)
     let viewModel = ConnectionViewModel(connection: newConnection)
@@ -96,7 +96,6 @@ struct ConnectionListFormView: View {
             }
             .buttonBorderShape(.capsule)
             .buttonStyle(.bordered)
-            .tint(.mint)
             .disabled(isFormDisabled)
             Spacer()
           }
@@ -105,9 +104,9 @@ struct ConnectionListFormView: View {
       }
       .navigationTitle("New Connection")
       .navigationBarTitleDisplayMode(.inline)
-      .tint(.mint)
     }
     .presentationDragIndicator(.visible)
+    .tint(.mint)
   }
 }
 

@@ -17,7 +17,8 @@ struct ConnectionCellView: View {
         .bold()
       Text(viewModel.port)
         .monospaced()
-      Text(viewModel.dnsProtocol)
+      Text(viewModel.dnsProtocol.uppercased())
+        .bold()
     }
   }
   

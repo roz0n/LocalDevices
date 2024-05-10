@@ -25,6 +25,10 @@ class ConnectionViewModel: ObservableObject, Identifiable {
     connection.name
   }
   
+  var ipAddress: String {
+    connection.host
+  }
+  
   var port: String {
     "\(connection.port)"
   }
