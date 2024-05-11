@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ConnectionDetailView: View {
   
-  var viewModel: ConnectionViewModel
+  @ObservedObject var viewModel: ConnectionViewModel
   
   @State private var ipAddressText: String
   @State private var portText: String
@@ -47,38 +47,44 @@ struct ConnectionDetailView: View {
         if viewModel.type == .udp {
           HStack(alignment: .center) {
             Spacer()
-            Button {
-              print("Tapped connect")
-            } label: {
-              HStack(spacing: 8) {
-                Image(systemName: "powercord.fill")
-                Text("Connect")
-                  .bold()
-              }
-              .padding(.vertical, 4)
-              .padding(.horizontal, 8)
-            }
-            .buttonBorderShape(.capsule)
-            .buttonStyle(.bordered)
-            .tint(.green)
-            
-            Button {
-              print("Tapped cancel")
-            } label: {
-              Text("Cancel")
-                .font(.system(size: 16, weight: .semibold, design: .default))
+            if !viewModel.isConnectionReady {
+              Button {
+                viewModel.connect()
+              } label: {
+                HStack(spacing: 8) {
+                  Image(systemName: "powercord.fill")
+                  Text("Connect")
+                    .bold()
+                }
                 .padding(.vertical, 4)
                 .padding(.horizontal, 8)
+              }
+              .buttonBorderShape(.capsule)
+              .buttonStyle(.bordered)
+              .tint(.green)
+            } else if viewModel.isConnectionReady {
+              Button {
+                viewModel.cancel()
+              } label: {
+                Text("Cancel")
+                  .font(.system(size: 16, weight: .semibold, design: .default))
+                  .padding(.vertical, 4)
+                  .padding(.horizontal, 8)
+              }
+              .buttonBorderShape(.capsule)
+              .buttonStyle(.bordered)
+              .tint(.red)
             }
-            .buttonBorderShape(.capsule)
-            .buttonStyle(.bordered)
-            .tint(.red)
             Spacer()
           }
         }
       }.listRowBackground(Color.clear)
     }
     .navigationTitle("\(viewModel.name) (\(viewModel.dnsProtocol.uppercased()))")
+    .alert(isPresented: $viewModel.isErrorAlertPresented) {
+      Alert(title: Text("Connection Failed"),
+            message: Text(viewModel.currentError?.localizedDescription ?? "No description available"))
+    }
   }
 }
 

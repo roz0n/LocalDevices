@@ -12,12 +12,19 @@ import Network
 class ConnectionViewModel: ObservableObject, Identifiable {
   
   @Published var isConnectionReady: Bool = false
-  @Published var isConnectionFailed: Bool = false
+  //  @Published var isConnectionFailed: Bool = false
+  @Published var currentError: NWError? = nil
+  @Published var isErrorAlertPresented: Bool = false
   
   private var connectionManager: NetworkConnectionManager
   private var cancellables: Set<AnyCancellable> = []
   
   private (set) var connection: Connection
+  
+  //  enum ConnectionError: Error {
+  //    case waiting(String)
+  //    case failed(String)
+  //  }
   
   // MARK: - Computed Properties
   
@@ -60,17 +67,17 @@ class ConnectionViewModel: ObservableObject, Identifiable {
   // MARK: - Networking
   
   func connect() {
-    print("Connecting: \(name) @ \(port)")
+    print("🆕 Creating new \(type.rawValue.uppercased()) connection: \(name) @ \(port)")
     connectionManager.connect()
   }
   
   func cancel() {
-    print("Disconnecting: \(name) @ \(port)")
+    print("✴️ Disconnecting \(type.rawValue.uppercased()) connection: \(name) @ \(port)")
     connectionManager.cancel()
   }
   
   func sendData(_ data: Data) {
-    print("Sending data: \(data) to \(name) @ \(port)")
+    print("⬆️ Sending data via \(type.rawValue.uppercased()): \(data) to \(name) @ \(port)")
     connectionManager.send(message: data)
   }
   
@@ -82,27 +89,42 @@ class ConnectionViewModel: ObservableObject, Identifiable {
           return
         }
         
+        self?.resetError()
+        
         switch state {
           case .setup:
-            print("🔌 Setting up connection: \(name) @ \(port)")
+            print("ℹ️ Setting up \(self?.type.rawValue.uppercased() ?? "?") connection: \(name) @ \(port)")
           case .waiting(let nWError):
-            print("🔌 Setting up connection: \(name) @ \(port). Error: \(nWError.localizedDescription)")
+            print("🆘 Waiting to set up \(self?.type.rawValue.uppercased() ?? "?") connection: \(name) @ \(port). Reason: \(nWError.localizedDescription)")
+            self?.setError(nWError)
           case .preparing:
-            print("🔌 Preparing connection: \(name) @ \(port)")
+            print("🅿️ Preparing \(self?.type.rawValue.uppercased() ?? "?") connection: \(name) @ \(port)")
           case .ready:
-            print("🔌 Connection: \(name) @ \(port) is READY.")
+            print("✅ \(self?.type.rawValue.uppercased() ?? "?") Connection: \(name) @ \(port) is READY")
             self?.isConnectionReady = true
           case .failed(let nWError):
-            print("🔌 Connection: \(name) @ \(port) FAILED! Error: \(nWError.localizedDescription)")
-            self?.isConnectionReady = false
+            print("🈲 \(self?.type.rawValue.uppercased() ?? "?") Connection: \(name) @ \(port) FAILED! Error: \(nWError.localizedDescription)")
+            self?.setError(nWError)
           case .cancelled:
-            print("🔌 Connection: \(name) @ \(port) was CANCELLED!")
+            print("☑️ \(self?.type.rawValue.uppercased() ?? "?") Connection: \(name) @ \(port) was CANCELLED!")
             self?.isConnectionReady = false
           @unknown default:
             self?.isConnectionReady = false
-            fatalError("Unable to connect")
+            fatalError("🆘 \(self?.type.rawValue.uppercased() ?? "?") Connection: \(name) @ \(port) returned an unknown state.")
         }
       }.store(in: &cancellables)
+  }
+  
+  func setError(_ error: NWError) {
+    currentError = error
+    isErrorAlertPresented = true
+    isConnectionReady = false
+  }
+  
+  func resetError() {
+    currentError = nil
+    isErrorAlertPresented = false
+    isConnectionReady = false
   }
   
 }

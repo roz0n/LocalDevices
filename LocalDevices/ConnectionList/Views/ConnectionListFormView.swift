@@ -88,7 +88,7 @@ struct ConnectionListFormView: View {
             } label: {
               HStack(spacing: 8) {
                 Image(systemName: "powercord")
-                Text("Add")
+                Text("Save")
                   .bold()
               }
               .padding(.vertical, 4)
