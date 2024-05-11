@@ -43,40 +43,37 @@ struct ConnectionDetailView: View {
       }
       
       Section {
-        // We'll ad a button to send a UDP message here
-        if viewModel.type == .udp {
-          HStack(alignment: .center) {
-            Spacer()
-            if !viewModel.isConnectionReady {
-              Button {
-                viewModel.connect()
-              } label: {
-                HStack(spacing: 8) {
-                  Image(systemName: "powercord.fill")
-                  Text("Connect")
-                    .bold()
-                }
+        HStack(alignment: .center) {
+          Spacer()
+          if !viewModel.isConnectionReady {
+            Button {
+              viewModel.connect()
+            } label: {
+              HStack(spacing: 8) {
+                Image(systemName: "powercord.fill")
+                Text("Connect")
+                  .bold()
+              }
+              .padding(.vertical, 4)
+              .padding(.horizontal, 8)
+            }
+            .buttonBorderShape(.capsule)
+            .buttonStyle(.bordered)
+            .tint(.green)
+          } else if viewModel.isConnectionReady {
+            Button {
+              viewModel.cancel()
+            } label: {
+              Text("Cancel")
+                .font(.system(size: 16, weight: .semibold, design: .default))
                 .padding(.vertical, 4)
                 .padding(.horizontal, 8)
-              }
-              .buttonBorderShape(.capsule)
-              .buttonStyle(.bordered)
-              .tint(.green)
-            } else if viewModel.isConnectionReady {
-              Button {
-                viewModel.cancel()
-              } label: {
-                Text("Cancel")
-                  .font(.system(size: 16, weight: .semibold, design: .default))
-                  .padding(.vertical, 4)
-                  .padding(.horizontal, 8)
-              }
-              .buttonBorderShape(.capsule)
-              .buttonStyle(.bordered)
-              .tint(.red)
             }
-            Spacer()
+            .buttonBorderShape(.capsule)
+            .buttonStyle(.bordered)
+            .tint(.red)
           }
+          Spacer()
         }
       }.listRowBackground(Color.clear)
     }

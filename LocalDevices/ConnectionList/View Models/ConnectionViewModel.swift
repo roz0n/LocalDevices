@@ -12,19 +12,12 @@ import Network
 class ConnectionViewModel: ObservableObject, Identifiable {
   
   @Published var isConnectionReady: Bool = false
-  //  @Published var isConnectionFailed: Bool = false
   @Published var currentError: NWError? = nil
   @Published var isErrorAlertPresented: Bool = false
   
   private var connectionManager: NetworkConnectionManager
   private var cancellables: Set<AnyCancellable> = []
-  
   private (set) var connection: Connection
-  
-  //  enum ConnectionError: Error {
-  //    case waiting(String)
-  //    case failed(String)
-  //  }
   
   // MARK: - Computed Properties
   
@@ -46,6 +39,10 @@ class ConnectionViewModel: ObservableObject, Identifiable {
   
   var type: Connection.ConnectionProtocol {
     connection.dnsProtocol
+  }
+  
+  private var isConnectionFailed: Bool {
+    currentError != nil || isErrorAlertPresented
   }
   
   // MARK: - Lifecycle
