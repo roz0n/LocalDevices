@@ -39,7 +39,7 @@ struct ConnectionListFormView: View {
     newConnectionHostAddress = ""
   }
   
-  private func handleSubmit() {
+  @MainActor private func handleSubmit() {
     let newConnection = Connection(name: newConnectionNameText,
                                    host: newConnectionHostAddress,
                                    port: selectedPort ?? 0,

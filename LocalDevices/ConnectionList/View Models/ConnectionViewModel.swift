@@ -9,6 +9,7 @@ import Foundation
 import Combine
 import Network
 
+@MainActor
 final class ConnectionViewModel: ObservableObject, Identifiable {
   
   @Published var isConnectionReady: Bool = false
@@ -71,7 +72,9 @@ final class ConnectionViewModel: ObservableObject, Identifiable {
   
   private func setup() {
     connectionManager.onReceieveMessage = { [weak self] message in
-      self?.handleMessageResponse(message.data, timestamp: message.date)
+      DispatchQueue.main.async {
+        self?.handleMessageResponse(message.data, timestamp: message.date)
+      }
     }
   }
   

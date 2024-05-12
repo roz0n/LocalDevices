@@ -8,6 +8,7 @@
 import Foundation
 import Network
 
+@MainActor
 final class ConnectionListViewModel: ObservableObject {
   
   @Published var connections: [ConnectionViewModel] = []
