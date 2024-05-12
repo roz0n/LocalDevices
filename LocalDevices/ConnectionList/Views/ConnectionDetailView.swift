@@ -39,7 +39,7 @@ struct ConnectionDetailView: View {
             }
             .buttonBorderShape(.capsule)
             .buttonStyle(.bordered)
-            .tint(.cyan)
+            .tint(.blue)
           } else if viewModel.isConnectionReady {
             Button {
               viewModel.cancel()
