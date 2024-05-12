@@ -26,11 +26,11 @@ struct ConnectionCellView: View {
           .bold()
         HStack(alignment: .center, spacing: 4) {
           Image(systemName: "rectangle.connected.to.line.below")
-            .font(.system(size: 10, weight: .bold))
-            .foregroundColor(.orange)
+            .font(.system(size: 10, weight: .black))
           Text("\(viewModel.port)")
-            .font(.system(size: 12, weight: .medium, design: .monospaced))
+            .font(.system(size: 14, weight: .bold, design: .monospaced))
         }
+        .foregroundColor(.orange)
       }
       Spacer()
       HStack(alignment: .center, spacing: 8) {

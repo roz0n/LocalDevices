@@ -21,6 +21,10 @@ struct ConnectionDetailView: View {
     self.portText = viewModel.port
   }
   
+  private var isSendButtonDisabled: Bool {
+    messageText.isEmpty
+  }
+  
   var body: some View {
     List {
       Section {
@@ -82,7 +86,7 @@ struct ConnectionDetailView: View {
       }
       
       if viewModel.isConnectionReady {
-        Section {
+        Section("Compose message") {
           TextField("Enter a message to send", text: $messageText, axis: .vertical)
             .lineLimit(3, reservesSpace: true)
             .padding(.top, 6)
@@ -106,16 +110,27 @@ struct ConnectionDetailView: View {
             .buttonBorderShape(.capsule)
             .buttonStyle(.bordered)
             .tint(.accent)
+            .disabled(isSendButtonDisabled)
           }
           .padding(.vertical, 4)
         }.listRowSeparator(.hidden)
         
-        Section("Messages log") {
-          
+        Section("Message log") {
+          Text("Nothing yet...")
+            .opacity(0.35)
         }
       }
     }
     .navigationTitle("\(viewModel.name) (\(viewModel.dnsProtocol.uppercased()))")
+    .toolbar {
+      ToolbarItem(placement: .topBarTrailing) {
+        if viewModel.isConnectionReady {
+          ProgressView()
+            .controlSize(.regular)
+            .tint(.purple)
+        }
+      }
+    }
     .alert(isPresented: $viewModel.isErrorAlertPresented) {
       Alert(title: Text("Connection Failed"),
             message: Text(viewModel.currentError?.localizedDescription ?? "No description available"))
