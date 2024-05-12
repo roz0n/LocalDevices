@@ -76,7 +76,7 @@ struct ConnectionDetailView: View {
             .disabled(true)
             .monospaced()
         } label: {
-          Image(systemName: "app.connected.to.app.below.fill")
+          Image(systemName: "rectangle.connected.to.line.below")
             .foregroundStyle(Color.orange)
         }
       }

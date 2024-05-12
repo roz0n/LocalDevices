@@ -75,7 +75,7 @@ struct ConnectionListFormView: View {
           LabeledContent {
             TextField("Port", text: $newConnectionPortText)
           } label: {
-            Image(systemName: "app.connected.to.app.below.fill")
+            Image(systemName: "rectangle.connected.to.line.below")
               .foregroundStyle(Color.orange)
           }
         }

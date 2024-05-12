@@ -24,8 +24,13 @@ struct ConnectionCellView: View {
       VStack(alignment: .leading, spacing: 6) {
         Text(viewModel.name)
           .bold()
-        Text("PORT \(viewModel.port)")
-          .font(.system(size: 12, weight: .regular, design: .monospaced))
+        HStack(alignment: .center, spacing: 4) {
+          Image(systemName: "rectangle.connected.to.line.below")
+            .font(.system(size: 10, weight: .bold))
+            .foregroundColor(.orange)
+          Text("\(viewModel.port)")
+            .font(.system(size: 12, weight: .medium, design: .monospaced))
+        }
       }
       Spacer()
       HStack(alignment: .center, spacing: 8) {
@@ -42,8 +47,9 @@ struct ConnectionCellView: View {
         }
         .padding(.vertical, 2)
         .padding(.horizontal, 6)
-
-          .background(RoundedRectangle(cornerRadius: 8)          .foregroundStyle(dnsChipBackgroundColor))
+        .background(
+          RoundedRectangle(cornerRadius: 8)
+            .foregroundStyle(dnsChipBackgroundColor))
         
         Image(systemName: "chevron.right")
           .font(.system(size: 12, weight: .semibold))
