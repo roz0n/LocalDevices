@@ -69,7 +69,7 @@ struct ConnectionListFormView: View {
             TextField("IP Address", text: $newConnectionHostAddress)
           } label: {
             Image(systemName: "network")
-              .foregroundStyle(.blue)
+              .foregroundStyle(.cyan)
           }
           
           LabeledContent {

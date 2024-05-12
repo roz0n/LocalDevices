@@ -74,7 +74,7 @@ struct ConnectionDetailView: View {
             .monospaced()
         } label: {
           Image(systemName: "network")
-            .foregroundStyle(.blue)
+            .foregroundStyle(.cyan)
         }
         
         LabeledContent {
