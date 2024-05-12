@@ -122,7 +122,7 @@ struct ConnectionDetailView: View {
         }
       }
     }
-    .navigationTitle("\(viewModel.name) (\(viewModel.dnsProtocol.uppercased()))")
+    .navigationTitle(viewModel.name)
     .toolbar {
       ToolbarItem(placement: .topBarTrailing) {
         if viewModel.isConnectionReady {
