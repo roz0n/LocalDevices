@@ -64,7 +64,7 @@ class ConnectionViewModel: ObservableObject, Identifiable {
   // MARK: - Networking
   
   func connect() {
-    print("🆕 Creating new \(type.rawValue.uppercased()) connection: \(name) @ \(port)")
+    print("\n🆕 Creating new \(type.rawValue.uppercased()) connection: \(name) @ \(port)")
     connectionManager.connect()
   }
   
@@ -103,7 +103,7 @@ class ConnectionViewModel: ObservableObject, Identifiable {
             print("🈲 \(self?.type.rawValue.uppercased() ?? "?") Connection: \(name) @ \(port) FAILED! Error: \(nWError.localizedDescription)")
             self?.setError(nWError)
           case .cancelled:
-            print("☑️ \(self?.type.rawValue.uppercased() ?? "?") Connection: \(name) @ \(port) was CANCELLED!")
+            print("☑️ \(self?.type.rawValue.uppercased() ?? "?") Connection: \(name) @ \(port) was CANCELLED!\n")
             self?.isConnectionReady = false
           @unknown default:
             self?.isConnectionReady = false

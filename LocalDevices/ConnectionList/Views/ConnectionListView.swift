@@ -51,7 +51,6 @@ struct ConnectionListView: View {
       toolbarContent
     }
     .navigationTitle("Networker")
-    .navigationBarTitleDisplayMode(.inline)
     .sheet(isPresented: $isAddSheetPresented) {
       ConnectionListFormView { newConnection in
         listViewModel.add(newConnection)

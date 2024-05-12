@@ -29,7 +29,7 @@ struct ConnectionDetailView: View {
             .monospaced()
         } label: {
           Image(systemName: "network")
-            .foregroundStyle(Color.purple)
+            .foregroundStyle(.blue)
         }
         
         LabeledContent {
