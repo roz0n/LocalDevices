@@ -15,7 +15,7 @@ struct ConnectionDetailView: View {
   @State private var portText: String
   @State private var messageText: String = ""
   @State private var isComposeSheetPresented: Bool = false
-  @State private var isMessageDetailPresented: Bool = false
+  @State private var selectedMessage: MessageViewModel? = nil
   
   init(viewModel: ConnectionViewModel) {
     self.viewModel = viewModel
@@ -95,7 +95,7 @@ struct ConnectionDetailView: View {
         
         ForEach(viewModel.messages.reversed()) { messageViewModel in
           Button {
-            isMessageDetailPresented = true
+            selectedMessage = messageViewModel
           } label: {
             HStack(alignment: .center) {
               Text(
@@ -107,9 +107,9 @@ struct ConnectionDetailView: View {
                 .uppercased()
               )
               Spacer()
-              Image(systemName: "eye.fill")
+              Image(systemName: "chevron.right")
             }
-            .font(.system(size: 12, weight: .semibold, design: .monospaced))
+            .font(.system(size: 12, weight: .medium, design: .monospaced))
           }
           
           Group {
@@ -118,7 +118,7 @@ struct ConnectionDetailView: View {
             } else {
               Text("\(messageViewModel.message.data.bytes.count) Byte Message")
             }
-          }.font(.system(size: 14, weight: .medium)).padding(.vertical, 4)
+          }.font(.system(size: 14, weight: .regular, design: .monospaced)).padding(.vertical, 4)
         }
       }
     }
@@ -145,8 +145,8 @@ struct ConnectionDetailView: View {
       .presentationBackgroundInteraction(.enabled(upThrough: .height(200)))
       .interactiveDismissDisabled()
     }
-    .navigationDestination(isPresented: $isMessageDetailPresented) {
-      Text("Message Detail View")
+    .navigationDestination(item: $selectedMessage) { messageViewModel in
+      MessageDetailView(viewModel: messageViewModel)
     }
     .onAppear {
       isComposeSheetPresented = viewModel.isConnectionReady

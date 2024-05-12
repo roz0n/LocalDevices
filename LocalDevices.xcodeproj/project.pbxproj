@@ -27,6 +27,7 @@
 		A752C5832BD9F45C00609560 /* DataExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752C5822BD9F45C00609560 /* DataExtension.swift */; };
 		A757F05C2BF0829D002A3654 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = A757F05B2BF0829D002A3654 /* Message.swift */; };
 		A757F05F2BF082E1002A3654 /* MessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A757F05E2BF082E1002A3654 /* MessageViewModel.swift */; };
+		A757F0612BF14A12002A3654 /* MessageDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A757F0602BF14A12002A3654 /* MessageDetailView.swift */; };
 		A7A0DBB22BEDDDB000EEE080 /* NetworkConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A0DBB12BEDDDB000EEE080 /* NetworkConnectionManager.swift */; };
 		A7A0DBB42BEDDDDD00EEE080 /* ConnectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A0DBB32BEDDDDD00EEE080 /* ConnectionViewModel.swift */; };
 		A7A0DBB92BEEB4BF00EEE080 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A0DBB82BEEB4BF00EEE080 /* UserDefaultsManager.swift */; };
@@ -76,6 +77,7 @@
 		A752C5822BD9F45C00609560 /* DataExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataExtension.swift; sourceTree = "<group>"; };
 		A757F05B2BF0829D002A3654 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		A757F05E2BF082E1002A3654 /* MessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewModel.swift; sourceTree = "<group>"; };
+		A757F0602BF14A12002A3654 /* MessageDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDetailView.swift; sourceTree = "<group>"; };
 		A7A0DBB12BEDDDB000EEE080 /* NetworkConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConnectionManager.swift; sourceTree = "<group>"; };
 		A7A0DBB32BEDDDDD00EEE080 /* ConnectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionViewModel.swift; sourceTree = "<group>"; };
 		A7A0DBB82BEEB4BF00EEE080 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
@@ -243,6 +245,7 @@
 				A7A0DBBF2BEEC09800EEE080 /* ConnectionListFormView.swift */,
 				A7A0DBC12BEEC25800EEE080 /* ConnectionCellView.swift */,
 				A7A0DBC32BEEDB0500EEE080 /* ConnectionDetailView.swift */,
+				A757F0602BF14A12002A3654 /* MessageDetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -453,6 +456,7 @@
 				A757F05F2BF082E1002A3654 /* MessageViewModel.swift in Sources */,
 				A752C56F2BD8E73800609560 /* ConnectionListView.swift in Sources */,
 				A752C5752BD9BC0100609560 /* NetworkDeviceViewModel.swift in Sources */,
+				A757F0612BF14A12002A3654 /* MessageDetailView.swift in Sources */,
 				A752C5592BD8B9EA00609560 /* NetworkConnectable.swift in Sources */,
 				A7A0DBB92BEEB4BF00EEE080 /* UserDefaultsManager.swift in Sources */,
 				A752C55E2BD8BB5000609560 /* NetworkConnectionProvider.swift in Sources */,
