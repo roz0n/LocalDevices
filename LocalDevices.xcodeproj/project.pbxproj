@@ -140,7 +140,7 @@
 				A7A0DBB62BEEB49600EEE080 /* Shared */,
 				A752C5812BD9F45300609560 /* Extensions */,
 				A752C57E2BD9F40900609560 /* APG */,
-				A752C5532BD8B06500609560 /* Networking */,
+				A752C5532BD8B06500609560 /* NetworkConnections */,
 				A752C55F2BD8BB6400609560 /* App */,
 				A752C52F2BD8B05A00609560 /* Preview Content */,
 				A752C52D2BD8B05A00609560 /* Assets.xcassets */,
@@ -173,7 +173,7 @@
 			path = LocalDevicesUITests;
 			sourceTree = "<group>";
 		};
-		A752C5532BD8B06500609560 /* Networking */ = {
+		A752C5532BD8B06500609560 /* NetworkConnections */ = {
 			isa = PBXGroup;
 			children = (
 				A7A0DBB52BEEB2DF00EEE080 /* Managers */,
@@ -181,7 +181,7 @@
 				A752C5572BD8B9E100609560 /* Protocols */,
 				A752C55C2BD8BACE00609560 /* Utilities */,
 			);
-			path = Networking;
+			path = NetworkConnections;
 			sourceTree = "<group>";
 		};
 		A752C5572BD8B9E100609560 /* Protocols */ = {
