@@ -13,6 +13,7 @@ struct ConnectionDetailView: View {
   
   @State private var ipAddressText: String
   @State private var portText: String
+  @State private var messageText: String = ""
   
   init(viewModel: ConnectionViewModel) {
     self.viewModel = viewModel
@@ -81,6 +82,34 @@ struct ConnectionDetailView: View {
       }
       
       if viewModel.isConnectionReady {
+        Section {
+          TextField("Enter a message to send", text: $messageText, axis: .vertical)
+            .lineLimit(3, reservesSpace: true)
+            .padding(.top, 6)
+            .autocorrectionDisabled()
+          HStack(alignment: .center) {
+            HStack(alignment: .center) {
+              Image(systemName: "network")
+              Text("192.168.0.1")
+            }
+            .font(.system(size: 12, weight: .regular, design: .monospaced))
+            .opacity(0.5)
+            
+            Spacer()
+            
+            Button {
+              print("Tapped send")
+            } label: {
+              Text("Send")
+                .font(.system(size: 16, weight: .semibold))
+            }
+            .buttonBorderShape(.capsule)
+            .buttonStyle(.bordered)
+            .tint(.accent)
+          }
+          .padding(.vertical, 4)
+        }.listRowSeparator(.hidden)
+        
         Section("Messages log") {
           
         }

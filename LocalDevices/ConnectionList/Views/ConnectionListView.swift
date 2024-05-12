@@ -72,8 +72,8 @@ extension ConnectionListView {
   private var overlayContent: some View {
     if listViewModel.connections.isEmpty, listViewModel.hasLoaded {
       ContentUnavailableView("No Connections",
-                             systemImage: "circle.dotted.and.circle",
-                             description: Text("Connections you save will appear here."))
+                             systemImage: "eyes.inverse",
+                             description: Text("Connections you create will appear here"))
     } else {
       EmptyView()
     }
