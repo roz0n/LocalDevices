@@ -16,13 +16,22 @@ class NetworkConnectionManager {
   let host: NWEndpoint.Host
   let port: NWEndpoint.Port
   let type: NWParameters
+  let queue: DispatchQueue
+  var onReceieveMessage: (((data: Data, date: Date)) -> Void)? = nil
   
   private (set) var connectionStatePublisher = PassthroughSubject<NWConnection.State, Never>()
   
-  init(host: String, port: UInt16, type: NWParameters) {
+  init(
+    host: String,
+    port: UInt16,
+    type: NWParameters,
+    on queue: DispatchQueue = .global(),
+    onReceive: ((Data, Date) -> Void)? = nil
+  ) {
     self.host = NWEndpoint.Host(host)
     self.port = NWEndpoint.Port(rawValue: port)!
     self.type = type
+    self.queue = queue
   }
   
   func connect() {
@@ -32,7 +41,7 @@ class NetworkConnectionManager {
       self?.connectionStatePublisher.send(state)
     }
     
-    connection?.start(queue: .global())
+    connection?.start(queue: queue)
   }
   
   func send(message: Data) {
@@ -48,13 +57,17 @@ class NetworkConnectionManager {
   }
   
   func receive() {
-    connection?.receive(minimumIncompleteLength: 1, maximumLength: 65536) { data, _, isComplete, error in
-      if let data = data, let message = String(data: data, encoding: .utf8) {
-        print("Received message: \(message)")
+    connection?.receive(minimumIncompleteLength: 1, maximumLength: 65536) { [weak self] data, _, isComplete, error in
+      if let data {
+        self?.onReceieveMessage?((data, Date.now))
+        
+        if let message = String(data: data, encoding: .utf8) {
+          print("Received message: \(message)")
+        }
       }
       
       if isComplete {
-        self.connection?.cancel()
+        self?.connection?.cancel()
         print("Connection closed by the server.")
       } else if let error = error {
         print("Error receiving data: \(error)")

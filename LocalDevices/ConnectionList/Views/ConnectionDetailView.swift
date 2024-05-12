@@ -102,7 +102,10 @@ struct ConnectionDetailView: View {
             Spacer()
             
             Button {
-              print("Tapped send")
+              if let data = messageText.data(using: .utf8) {
+                viewModel.sendData(data)
+                messageText = ""
+              }
             } label: {
               Text("Send")
                 .font(.system(size: 16, weight: .semibold))
@@ -114,10 +117,23 @@ struct ConnectionDetailView: View {
           }
           .padding(.vertical, 4)
         }.listRowSeparator(.hidden)
-        
-        Section("Message log") {
+      }
+      
+      Section("Message log") {
+        if viewModel.messages.isEmpty {
           Text("Nothing yet...")
             .opacity(0.35)
+        } else {
+          ForEach(viewModel.messages.reversed()) { messageViewModel in
+            VStack {
+              if let message = String(data: messageViewModel.message.data, encoding: .utf8) {
+                Text(message)
+              }
+              
+              Text(String(String(describing: messageViewModel.message.data.bytes)))
+              Text(messageViewModel.message.timestamp.ISO8601Format())
+            }
+          }
         }
       }
     }

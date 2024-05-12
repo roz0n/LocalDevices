@@ -9,15 +9,21 @@ import Foundation
 import Combine
 import Network
 
-class ConnectionViewModel: ObservableObject, Identifiable {
+final class ConnectionViewModel: ObservableObject, Identifiable {
   
   @Published var isConnectionReady: Bool = false
   @Published var currentError: NWError? = nil
   @Published var isErrorAlertPresented: Bool = false
   
+  /// An abstraction over NW that handles an individual network connection.
   private var connectionManager: NetworkConnectionManager
   private var cancellables: Set<AnyCancellable> = []
+  
+  /// A connection model for storage purposes.
   private (set) var connection: Connection
+  
+  /// Messages logged ephemerally in memory.
+  var messages: [MessageViewModel] = []
   
   // MARK: - Computed Properties
   
@@ -47,18 +53,26 @@ class ConnectionViewModel: ObservableObject, Identifiable {
   
   // MARK: - Lifecycle
   
-  init(connection: Connection) {
+  init(connection: Connection, on queue: DispatchQueue = .global()) {
     self.connection = connection
     self.connectionManager = NetworkConnectionManager(
       host: connection.host,
       port: connection.port,
-      type: connection.protocolParameter
+      type: connection.protocolParameter,
+      on: queue
     )
     self.subscribeToConnectionState()
+    self.setup()
   }
   
   deinit {
     connectionManager.cancel()
+  }
+  
+  private func setup() {
+    connectionManager.onReceieveMessage = { [weak self] message in
+      self?.handleMessageResponse(message.data, timestamp: message.date)
+    }
   }
   
   // MARK: - Networking
@@ -110,6 +124,11 @@ class ConnectionViewModel: ObservableObject, Identifiable {
             fatalError("🆘 \(self?.type.rawValue.uppercased() ?? "?") Connection: \(name) @ \(port) returned an unknown state.")
         }
       }.store(in: &cancellables)
+  }
+  
+  func handleMessageResponse(_ data: Data, timestamp: Date) {
+    let newMessage = Message(data: data, timestamp: timestamp)
+    messages.append(MessageViewModel(message: newMessage))
   }
   
   func setError(_ error: NWError) {

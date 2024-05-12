@@ -25,6 +25,8 @@
 		A752C57D2BD9F3C300609560 /* CryptoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A752C57C2BD9F3C300609560 /* CryptoSwift */; };
 		A752C5802BD9F42400609560 /* APGRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752C57F2BD9F42400609560 /* APGRequestBuilder.swift */; };
 		A752C5832BD9F45C00609560 /* DataExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752C5822BD9F45C00609560 /* DataExtension.swift */; };
+		A757F05C2BF0829D002A3654 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = A757F05B2BF0829D002A3654 /* Message.swift */; };
+		A757F05F2BF082E1002A3654 /* MessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A757F05E2BF082E1002A3654 /* MessageViewModel.swift */; };
 		A7A0DBB22BEDDDB000EEE080 /* NetworkConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A0DBB12BEDDDB000EEE080 /* NetworkConnectionManager.swift */; };
 		A7A0DBB42BEDDDDD00EEE080 /* ConnectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A0DBB32BEDDDDD00EEE080 /* ConnectionViewModel.swift */; };
 		A7A0DBB92BEEB4BF00EEE080 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A0DBB82BEEB4BF00EEE080 /* UserDefaultsManager.swift */; };
@@ -72,6 +74,8 @@
 		A752C5792BD9BD5B00609560 /* NetworkDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDevice.swift; sourceTree = "<group>"; };
 		A752C57F2BD9F42400609560 /* APGRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APGRequestBuilder.swift; sourceTree = "<group>"; };
 		A752C5822BD9F45C00609560 /* DataExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataExtension.swift; sourceTree = "<group>"; };
+		A757F05B2BF0829D002A3654 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		A757F05E2BF082E1002A3654 /* MessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewModel.swift; sourceTree = "<group>"; };
 		A7A0DBB12BEDDDB000EEE080 /* NetworkConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConnectionManager.swift; sourceTree = "<group>"; };
 		A7A0DBB32BEDDDDD00EEE080 /* ConnectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionViewModel.swift; sourceTree = "<group>"; };
 		A7A0DBB82BEEB4BF00EEE080 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
@@ -249,6 +253,7 @@
 				A7A0DBB32BEDDDDD00EEE080 /* ConnectionViewModel.swift */,
 				A752C5742BD9BC0100609560 /* NetworkDeviceViewModel.swift */,
 				A7A0DBBD2BEEBE6300EEE080 /* ConnectionListViewModel.swift */,
+				A757F05E2BF082E1002A3654 /* MessageViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -298,6 +303,7 @@
 			children = (
 				A7A0DBBB2BEEB72E00EEE080 /* Connection.swift */,
 				A752C5792BD9BD5B00609560 /* NetworkDevice.swift */,
+				A757F05B2BF0829D002A3654 /* Message.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -444,6 +450,7 @@
 				A7A0DBB42BEDDDDD00EEE080 /* ConnectionViewModel.swift in Sources */,
 				A7A0DBC42BEEDB0500EEE080 /* ConnectionDetailView.swift in Sources */,
 				A752C57A2BD9BD5B00609560 /* NetworkDevice.swift in Sources */,
+				A757F05F2BF082E1002A3654 /* MessageViewModel.swift in Sources */,
 				A752C56F2BD8E73800609560 /* ConnectionListView.swift in Sources */,
 				A752C5752BD9BC0100609560 /* NetworkDeviceViewModel.swift in Sources */,
 				A752C5592BD8B9EA00609560 /* NetworkConnectable.swift in Sources */,
@@ -457,6 +464,7 @@
 				A752C5802BD9F42400609560 /* APGRequestBuilder.swift in Sources */,
 				A752C5662BD8BDB000609560 /* NetworkConnectionError.swift in Sources */,
 				A752C5832BD9F45C00609560 /* DataExtension.swift in Sources */,
+				A757F05C2BF0829D002A3654 /* Message.swift in Sources */,
 				A7A0DBC02BEEC09800EEE080 /* ConnectionListFormView.swift in Sources */,
 				A752C55B2BD8BA0800609560 /* NetworkConnectionBuilder.swift in Sources */,
 			);
