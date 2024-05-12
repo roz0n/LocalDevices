@@ -73,7 +73,7 @@ extension ConnectionListView {
     if listViewModel.connections.isEmpty, listViewModel.hasLoaded {
       ContentUnavailableView("No Connections",
                              systemImage: "circle.dotted.and.circle",
-                             description: Text("Connections you make will appear here"))
+                             description: Text("Connections you save will appear here."))
     } else {
       EmptyView()
     }

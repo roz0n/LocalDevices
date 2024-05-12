@@ -90,17 +90,17 @@ class ConnectionViewModel: ObservableObject, Identifiable {
         
         switch state {
           case .setup:
-            print("ℹ️ Setting up \(self?.type.rawValue.uppercased() ?? "?") connection: \(name) @ \(port)")
+            print("ℹ️ Initializing \(self?.type.rawValue.uppercased() ?? "?") connection: \(name) @ \(port)")
           case .waiting(let nWError):
-            print("🆘 Waiting to set up \(self?.type.rawValue.uppercased() ?? "?") connection: \(name) @ \(port). Reason: \(nWError.localizedDescription)")
+            print("🆘 Waiting to set up \(self?.type.rawValue.uppercased() ?? "?") connection: \(name) @ \(port): \(nWError.localizedDescription)")
             self?.setError(nWError)
           case .preparing:
             print("🅿️ Preparing \(self?.type.rawValue.uppercased() ?? "?") connection: \(name) @ \(port)")
           case .ready:
-            print("✅ \(self?.type.rawValue.uppercased() ?? "?") Connection: \(name) @ \(port) is READY")
+            print("✅ \(self?.type.rawValue.uppercased() ?? "?") Connection: \(name) @ \(port) is READY to send and receive data")
             self?.isConnectionReady = true
           case .failed(let nWError):
-            print("🈲 \(self?.type.rawValue.uppercased() ?? "?") Connection: \(name) @ \(port) FAILED! Error: \(nWError.localizedDescription)")
+            print("🈲 \(self?.type.rawValue.uppercased() ?? "?") Connection: \(name) @ \(port) has disconnected or encountered an error: \(nWError.localizedDescription)")
             self?.setError(nWError)
           case .cancelled:
             print("☑️ \(self?.type.rawValue.uppercased() ?? "?") Connection: \(name) @ \(port) was CANCELLED!\n")

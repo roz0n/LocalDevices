@@ -22,6 +22,44 @@ struct ConnectionDetailView: View {
   
   var body: some View {
     List {
+      Section {
+        HStack(alignment: .center) {
+          if !viewModel.isConnectionReady {
+            Button {
+              viewModel.connect()
+            } label: {
+              HStack(spacing: 8) {
+                Image(systemName: "play.fill")
+                Text("Connect")
+                  .bold()
+              }
+              .padding(.vertical, 4)
+              .padding(.horizontal, 8)
+            }
+            .buttonBorderShape(.capsule)
+            .buttonStyle(.bordered)
+            .tint(.cyan)
+          } else if viewModel.isConnectionReady {
+            Button {
+              viewModel.cancel()
+            } label: {
+              HStack(spacing: 8) {
+                Image(systemName: "stop.fill")
+                Text("Cancel")
+                  .bold()
+              }
+              .padding(.vertical, 4)
+              .padding(.horizontal, 8)
+            }
+            .buttonBorderShape(.capsule)
+            .buttonStyle(.bordered)
+            .tint(.red)
+          }
+        }
+      }
+      .listRowBackground(Color.clear)
+      .listRowInsets(EdgeInsets())
+      
       Section("Host details") {
         LabeledContent {
           TextField("IP Address", text: $ipAddressText)
@@ -42,40 +80,11 @@ struct ConnectionDetailView: View {
         }
       }
       
-      Section {
-        HStack(alignment: .center) {
-          Spacer()
-          if !viewModel.isConnectionReady {
-            Button {
-              viewModel.connect()
-            } label: {
-              HStack(spacing: 8) {
-                Image(systemName: "powercord.fill")
-                Text("Connect")
-                  .bold()
-              }
-              .padding(.vertical, 4)
-              .padding(.horizontal, 8)
-            }
-            .buttonBorderShape(.capsule)
-            .buttonStyle(.bordered)
-            .tint(.green)
-          } else if viewModel.isConnectionReady {
-            Button {
-              viewModel.cancel()
-            } label: {
-              Text("Cancel")
-                .font(.system(size: 16, weight: .semibold, design: .default))
-                .padding(.vertical, 4)
-                .padding(.horizontal, 8)
-            }
-            .buttonBorderShape(.capsule)
-            .buttonStyle(.bordered)
-            .tint(.red)
-          }
-          Spacer()
+      if viewModel.isConnectionReady {
+        Section("Messages log") {
+          
         }
-      }.listRowBackground(Color.clear)
+      }
     }
     .navigationTitle("\(viewModel.name) (\(viewModel.dnsProtocol.uppercased()))")
     .alert(isPresented: $viewModel.isErrorAlertPresented) {

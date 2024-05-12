@@ -12,11 +12,11 @@ struct ConnectionCellView: View {
   @StateObject var viewModel: ConnectionViewModel
   
   private var dnsChipBackgroundColor: Color {
-    viewModel.isConnectionReady ? .green.opacity(0.35) : Color(UIColor.systemBackground)
+    viewModel.isConnectionReady ? .cyan.opacity(0.25) : Color(UIColor.systemGroupedBackground)
   }
   
   private var dnsChipTextColor: Color {
-    viewModel.isConnectionReady ? Color(UIColor.green) : Color(UIColor.label).opacity(0.75)
+    viewModel.isConnectionReady ? .cyan : Color(UIColor.label).opacity(0.75)
   }
   
   var body: some View {
@@ -33,7 +33,7 @@ struct ConnectionCellView: View {
           if viewModel.isConnectionReady {
             ProgressView()
               .controlSize(.mini)
-              .tint(.green)
+              .tint(.cyan)
           }
           
           Text(viewModel.dnsProtocol.uppercased())
