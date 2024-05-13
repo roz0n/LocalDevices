@@ -158,6 +158,7 @@ class NetworkConnectionManager {
     
     connection?.stateUpdateHandler = nil
     connection?.cancel()
+    connection = nil
     
     isListening.send(false)
   }
