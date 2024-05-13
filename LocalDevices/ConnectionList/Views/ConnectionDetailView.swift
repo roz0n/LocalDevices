@@ -118,7 +118,9 @@ struct ConnectionDetailView: View {
             } else {
               Text("\(messageViewModel.message.data.bytes.count) Byte Message")
             }
-          }.font(.system(size: 14, weight: .regular, design: .monospaced)).padding(.vertical, 4)
+          }
+          .padding(.vertical, 2)
+          .font(.system(size: 14, weight: .regular, design: .monospaced))
         }
       }
     }
@@ -181,6 +183,9 @@ extension ConnectionDetailView {
               viewModel.sendData(data)
               messageText = ""
             }
+            
+            // FIXME: This will send the APG request
+            
           } label: {
             Text("Send")
               .font(.system(size: 16, weight: .semibold))

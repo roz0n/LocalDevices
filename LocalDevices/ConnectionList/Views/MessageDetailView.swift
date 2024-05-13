@@ -17,7 +17,7 @@ struct MessageDetailView: View {
         Section("UTF-8 Representation") {
           Text(string)
             .font(.system(size: 14, weight: .regular, design: .monospaced))
-            .padding(.vertical, 8)
+            .padding(.vertical, 2)
         }
       }
       Section("Byte Representation") {
