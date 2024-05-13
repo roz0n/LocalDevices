@@ -194,6 +194,16 @@ extension ConnectionDetailView {
           .buttonStyle(.bordered)
           .tint(.accent)
           .disabled(isSendButtonDisabled)
+          
+          Button {
+            viewModel.sendData(apgRequestBuilder.createNonceRequest())
+          } label: {
+            Text("NRequest")
+              .font(.system(size: 16, weight: .semibold))
+          }
+          .buttonBorderShape(.capsule)
+          .buttonStyle(.bordered)
+          .tint(.yellow)
         }
         .padding(.vertical, 4)
       }.listRowSeparator(.hidden)

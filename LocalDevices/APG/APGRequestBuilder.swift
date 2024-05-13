@@ -24,14 +24,14 @@ struct APGRequestBuilder {
   }
   
   private func generateNonceRequestString() -> Data? {
-    var nonceRequestString = "<XML><PacketType>NRequest</PacketType>"
+    var nonceRequestString = "<XML><PacketType>Request</PacketType>"
     
     nonceRequestString.append(separatorString)
     nonceRequestString.append("<ProductName>APG Atwood</ProductName>")
-    nonceRequestString.append(separatorString)
-    nonceRequestString.append("<SerialNum>429004699</SerialNum>")
-    nonceRequestString.append(separatorString)
-    nonceRequestString.append("<MacAddr>70:B3:D5:BC:F8:D6</MacAddr>")
+//    nonceRequestString.append(separatorString)
+//    nonceRequestString.append("<SerialNum>429004699</SerialNum>")
+//    nonceRequestString.append(separatorString)
+//    nonceRequestString.append("<MacAddr>70:B3:D5:BC:F8:D6</MacAddr>")
     nonceRequestString.append(separatorString)
     nonceRequestString.append("</XML>")
     
@@ -95,10 +95,9 @@ struct APGRequestBuilder {
     
   }
   
-  func generateEncryptedMessage(type: APGMessageType) -> Data {
+  func createNonceRequest() -> Data {
     // 1. Nonce Request
-//    let requestStringData = generateNonceRequestString()
-    let requestStringData = "NRequest".data(using: .utf8)
+    let requestStringData = generateNonceRequestString()
 
     // 2. A 16-byte unique nonce for once time use
     let uniqueNonceData = generateUniqueNonce()

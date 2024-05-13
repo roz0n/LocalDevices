@@ -105,7 +105,7 @@ class NetworkConnectionManager {
   func createConnection(_ connection: NWConnection) {
     self.connection = connection
     
-    connection.stateUpdateHandler = { state in
+    self.connection?.stateUpdateHandler = { state in
       switch state {
         case .ready:
           print("Connection ready to receive data")

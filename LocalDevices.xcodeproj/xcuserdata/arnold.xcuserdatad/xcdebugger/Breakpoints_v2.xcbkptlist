@@ -103,17 +103,47 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "3456BA05-9E3B-4BAF-A185-8ABE55648A2C"
-            shouldBeEnabled = "No"
+            uuid = "113AD255-3F45-4039-9EA3-BDD03D92B20E"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocalDevices/NetworkConnections/Managers/NetworkConnectionManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
             landmarkName = "send(message:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "113AD255-3F45-4039-9EA3-BDD03D92B20E - eba7bc4f8b9461ec"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Network.NWError&gt;) -&gt; () in LocalDevices.NetworkConnectionManager.send(message: Foundation.Data) -&gt; ()"
+                  moduleName = "LocalDevices"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/arnold/Desktop/LocalDevices/LocalDevices/NetworkConnections/Managers/NetworkConnectionManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "100"
+                  endingLineNumber = "100">
+               </Location>
+               <Location
+                  uuid = "113AD255-3F45-4039-9EA3-BDD03D92B20E - eba7bc4f8b9461ec"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Network.NWError&gt;) -&gt; () in LocalDevices.NetworkConnectionManager.send(message: Foundation.Data) -&gt; ()"
+                  moduleName = "LocalDevices"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/arnold/Desktop/LocalDevices/LocalDevices/NetworkConnections/Managers/NetworkConnectionManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "100"
+                  endingLineNumber = "100">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
